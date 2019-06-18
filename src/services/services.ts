@@ -17,9 +17,25 @@ export class GraphqlService {
 
         apollo.create({
             link: httpLink.create({ 
-                uri: 'http://localhost:8000/graphql' 
+                uri: 'http://127.0.0.1:8000/graphql',
+                method:'GET'
             }),
             cache: new InMemoryCache()
           })
     }
+
+    public getPersonas = () => {
+        this.apollo.query({
+          query: gql`{
+            person(cedula: "0104925789") {
+              idPersona
+              personaPrimerNombre
+              personaPrimerApellido
+            }
+          }`
+        }).subscribe(result => {
+            this.persona = result.data as Personas
+            console.log(this.persona)
+        })
+      }
 }

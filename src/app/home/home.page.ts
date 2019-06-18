@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { Injectable } from '@angular/core';
-import { Apollo } from 'apollo-angular';
-import { HttpLink } from 'apollo-angular-link-http';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import gql from 'graphql-tag';
-import { Personas } from 'src/models/models';
+import { Personas } from 'src/services/models';
+import { GraphqlService } from "src/services/services";
+
 
 @Component({
   selector: 'app-home',
@@ -22,11 +20,10 @@ export class HomePage {
 
   public persona: Personas;
 
-  constructor() {
-
-
-
-
+  constructor(private service: GraphqlService) { 
+    
   }
-
+  ngOnInit(): void {
+    this.service.getPersonas();
+  }
 }
