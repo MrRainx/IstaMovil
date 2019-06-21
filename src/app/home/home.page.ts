@@ -1,8 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
-import { GraphqlService } from "src/services/services";
-import { PeopleType } from 'src/services/PeopleType';
+import gql from 'graphql-tag';
+import { Apollo } from 'apollo-angular';
 
+
+const PERSON_QUERY = gql`
+query buscarPersona($cedula: String) {
+  person(cedula: $cedula) {
+    idPersona
+    personaPrimerNombre
+    personaPrimerApellido
+  }
+}
+`;
+
+type Persona = {
+  idPersona: number;
+  personaPrimerNombre: string;
+  personaPrimerApellido: string;
+}
+
+type PersonaResponse = {
+  person: Persona;
+}
 
 @Component({
   selector: 'app-home',
@@ -16,23 +36,26 @@ import { PeopleType } from 'src/services/PeopleType';
 
 export class HomePage implements OnInit {
 
-  public personas: Array<PeopleType>;
+  public persona: Persona;
 
-  public persona: PeopleType;
-
-  public title: string;
-
-  constructor(private service: GraphqlService) {
-
+  constructor(private apollo: Apollo) {
   }
 
   ngOnInit(): void {
-
-    this.service.getPersona().subscribe(res => {
-        this.persona = res.data as PeopleType;
-        console.log(this.persona)
+    /*
+    this.apollo
+      .query<PersonaResponse>({
+        query: PERSON_QUERY,
+        variables: { cedula: "0104925789" }
+      }).subscribe(res => {
+        this.persona = res.data.person as Persona;
       });
-
-
+      */
   }
+
+  public ingresar() {
+    
+  }
+
+
 }
