@@ -10,6 +10,7 @@ query buscarPersona($cedula: String) {
     idPersona
     personaPrimerNombre
     personaPrimerApellido
+    personaFoto
   }
 }
 `;
@@ -18,6 +19,7 @@ type Persona = {
   idPersona: number;
   personaPrimerNombre: string;
   personaPrimerApellido: string;
+  personaFoto:string;
 }
 
 type PersonaResponse = {
@@ -42,7 +44,7 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit(): void {
-    /*
+    
     this.apollo
       .query<PersonaResponse>({
         query: PERSON_QUERY,
@@ -50,7 +52,7 @@ export class HomePage implements OnInit {
       }).subscribe(res => {
         this.persona = res.data.person as Persona;
       });
-      */
+      
   }
 
   public ingresar() {
