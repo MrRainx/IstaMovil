@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
-import { Personas } from 'src/services/models';
 import { GraphqlService } from "src/services/services";
+import { PeopleType } from 'src/services/PeopleType';
 
 
 @Component({
@@ -14,16 +14,28 @@ import { GraphqlService } from "src/services/services";
   providedIn: 'root'
 })
 
-export class HomePage {
+export class HomePage implements OnInit {
 
-  public personas: Personas[];
+  public personas: Array<PeopleType>;
 
-  public persona: Personas;
+  public persona: PeopleType;
 
-  constructor(private service: GraphqlService) { 
-    
+  public title: string;
+
+  constructor(private service: GraphqlService) {
+
   }
+
   ngOnInit(): void {
-    this.service.getPersonas();
+
+    console.log(this.service.getPersona().valueChanges)
+
+    /*
+    .subscribe(res => {
+      this.persona = res.data as PeopleType;
+      console.log(this.persona)
+    });
+    */
+    
   }
 }
