@@ -28,14 +28,11 @@ export class HomePage implements OnInit {
 
   ngOnInit(): void {
 
-    console.log(this.service.getPersona().valueChanges)
+    this.service.getPersona().subscribe(res => {
+        this.persona = res.data as PeopleType;
+        console.log(this.persona)
+      });
 
-    /*
-    .subscribe(res => {
-      this.persona = res.data as PeopleType;
-      console.log(this.persona)
-    });
-    */
-    
+
   }
 }

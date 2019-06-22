@@ -17,7 +17,7 @@ export class GraphqlService {
   }
 
   public getPersona = () => {
-    return this.apollo.watchQuery<PeopleType>({
+    return this.apollo.query<PeopleType>({
       query: gql`{
             person(cedula: "0104925789") {
               idPersona
