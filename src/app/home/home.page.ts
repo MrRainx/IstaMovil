@@ -21,7 +21,7 @@ export class HomePage implements OnInit {
   }
 
   async ngOnInit() {
-    this.persona = await this.apollo.getPersona("0104925789");
+    //this.persona = await this.apollo.getPersona("0104925789");
   }
 
   public ingresar() {
