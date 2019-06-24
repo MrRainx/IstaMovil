@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
-import { GraphqlService } from "src/services/services";
-import { PeopleType } from 'src/services/PeopleType';
+import { PersonaType, GraphqlService } from 'src/services/Persona';
 
 
 @Component({
@@ -16,26 +15,18 @@ import { PeopleType } from 'src/services/PeopleType';
 
 export class HomePage implements OnInit {
 
-  public personas: Array<PeopleType>;
+  public persona: PersonaType;
 
-  public persona: PeopleType;
+  constructor(private apollo: GraphqlService) {
+  }
 
-  public title: string;
+  async ngOnInit() {
+    //this.persona = await this.apollo.getPersona("0104925789");
+  }
 
-  constructor(private service: GraphqlService) {
+  public ingresar() {
 
   }
 
-  ngOnInit(): void {
 
-    console.log(this.service.getPersona().valueChanges)
-
-    /*
-    .subscribe(res => {
-      this.persona = res.data as PeopleType;
-      console.log(this.persona)
-    });
-    */
-    
-  }
 }

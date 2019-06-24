@@ -28,25 +28,26 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
   providers: [
     StatusBar,
     SplashScreen,
-    { 
+    {
       provide: RouteReuseStrategy, useClass: IonicRouteStrategy
     },
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
-  
+export class AppModule {
+
+
   constructor(
     apollo: Apollo,
     httpLink: HttpLink
   ) {
     apollo.create({
-      link: httpLink.create({ 
+      link: httpLink.create({
         uri: 'http://127.0.0.1:8000/graphql',
         method: 'GET'
       }),
       cache: new InMemoryCache()
     });
   }
-  
+
 }
