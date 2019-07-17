@@ -21,8 +21,20 @@ export class HomePage implements OnInit {
   }
 
   async ngOnInit() {
+    const btnIngresar = document.getElementById("btnIngresar");
+    btnIngresar.addEventListener("click", res =>{
+      res.preventDefault();
+    const usuario = document.getElementById("usuario").nodeValue;
+    const contraseña = document.getElementById("contraseña").nodeValue;
+
+    console.log(usuario);
+    console.log(contraseña);
+
+    })
     //this.persona = await this.apollo.getPersona("0104925789");
   }
+
+  //ngOnInit();
 
   public ingresar() {
 
