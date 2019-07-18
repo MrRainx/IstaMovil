@@ -29,6 +29,7 @@ export class HomePage implements OnInit {
 
     console.log(usuario);
     console.log(contraseña);
+    window.open("home.page2.html");
 
     })
     //this.persona = await this.apollo.getPersona("0104925789");
@@ -37,8 +38,7 @@ export class HomePage implements OnInit {
   //ngOnInit();
 
   public ingresar() {
-
-  }
-
-
+    
+  
+}
 }
