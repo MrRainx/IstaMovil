@@ -4,16 +4,16 @@ import { UsuarioType, UsuarioService } from 'src/services/Usuario';
 
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-login',
+  templateUrl: 'login.page.html',
+  styleUrls: ['login.page.scss'],
 })
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class HomePage implements OnInit {
+export class LoginPage implements OnInit {
 
   public usuario: UsuarioType;
 
