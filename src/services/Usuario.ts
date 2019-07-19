@@ -10,6 +10,9 @@ query login($username: String!, $password: String!) {
     Password
     persona{
       id
+      primerNombre
+      primerApellido
+      Foto
     }
   }
 }

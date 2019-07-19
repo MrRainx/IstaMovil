@@ -14,10 +14,10 @@ query buscarPersona($cedula: String) {
 `;
 
 export interface PersonaType {
-  idPersona?: number;
-  personaPrimerNombre?: string;
-  personaPrimerApellido?: string;
-  personaFoto?: string;
+  id?: number;
+  primerNombre?: string;
+  primerApellido?: string;
+  Foto?: string;
 }
 
 interface PersonaResponse {

@@ -25,11 +25,9 @@ export class HomePage implements OnInit {
 
   }
 
-
-
-  async public btnIngresar(usuario, password) {
+  async btnIngresar(usuario: HTMLInputElement, password: HTMLInputElement) {
     this.usuario = await this.apollo.login(usuario.value, password.value);
     console.log(this.usuario)
-
+    return false;
   }
 }
