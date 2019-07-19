@@ -22,15 +22,14 @@ export class HomePage implements OnInit {
 
   async ngOnInit() {
 
-    this.usuario = await this.apollo.login("ROOT", "WARMANDOCUTULO");
-    console.log(this.usuario)
 
   }
 
 
 
-  public ingresar() {
-
+  async public btnIngresar(usuario, password) {
+    this.usuario = await this.apollo.login(usuario.value, password.value);
+    console.log(this.usuario)
 
   }
 }
