@@ -5,7 +5,7 @@ import { Apollo } from 'apollo-angular';
 
 const LOGIN = gql`
 query login($username: String!, $password: String!) {
-  usuario(username: $username, password: $password) {
+usuario(username: $username, password: $password) {
     username
     Password
     persona{
@@ -41,7 +41,7 @@ export class UsuarioService {
     constructor(private apollo: Apollo) {
     }
 
-    public async login(username: string, password: string) {
+    public async login(username: String, password: String) {
         const query = await this.apollo.query<UsuarioResponse>({
             query: LOGIN,
             variables: {
@@ -49,7 +49,11 @@ export class UsuarioService {
                 password: password
             }
         });
-        return await query.toPromise().then(res => res.data.usuario);
+        try {
+            return await query.toPromise().then(res => res.data.usuario);
+        } catch (error) {
+            return null;
+        }
     }
 
 }

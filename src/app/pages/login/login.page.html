@@ -35,11 +35,11 @@
 
         <ion-card-content>
             <ion-item>
-                <ion-input id="usuario" type="text" #usuario placeholder="Nombre de Usuario"></ion-input>
+                <ion-input [(ngModel)]="usuarioIn"  id="usuario" type="text" #usuario placeholder="Nombre de Usuario"></ion-input>
             </ion-item>
 
             <ion-item>
-                <ion-input id="contraseña" type="password" #password placeholder="Contraseña"></ion-input>
+                <ion-input [(ngModel)]="passwordIn" id="contraseña" type="password" #password placeholder="Contraseña"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label>Recordarme</ion-label>
