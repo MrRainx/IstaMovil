@@ -10,19 +10,20 @@ import { UsuarioType } from 'src/services/Usuario';
 export class InicioPage implements OnInit {
 
   usuario: UsuarioType = null;
-
+  data: any;
   constructor(private route: ActivatedRoute, private router: Router) {
+    this.route.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation().extras.state) {
+        this.usuario = this.router.getCurrentNavigation().extras.state.user as UsuarioType;
+      }
+    });
+
+
 
   }
 
   async ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      if (params['usuario']) {
-        console.log("SI EXISTE")
-      } else {
-        console.log("NO EXISTE")
-      }
-    });
+
   }
 
 }

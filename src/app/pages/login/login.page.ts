@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { UsuarioType, UsuarioService } from 'src/services/Usuario';
 import { Router, NavigationExtras } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class LoginPage implements OnInit {
   public usuario: UsuarioType;
   public usuarioIn: string = "ROOT";
   public passwordIn: string = "WARMANDOCUTULO";
+
   constructor(private apollo: UsuarioService, private router: Router) {
   }
 
@@ -31,17 +33,15 @@ export class LoginPage implements OnInit {
 
     this.usuario = await this.apollo.login(usuario.value, password.value);
 
-    console.log("BTN INGRESAR")
-
     if (this.usuario != null) {
       let navigationExtras: NavigationExtras = {
         state: {
-          usuario: this.usuario
+          user: this.usuario
         }
       };
-
       this.router.navigate(['inicio'], navigationExtras);
     } else {
+      
     }
     return false;
   }
