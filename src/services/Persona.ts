@@ -4,11 +4,11 @@ import gql from 'graphql-tag';
 
 const PERSON_QUERY = gql`
 query buscarPersona($cedula: String) {
-  person(cedula: $cedula) {
-    idPersona
-    personaPrimerNombre
-    personaPrimerApellido
-    personaFoto
+  persona(cedula: $cedula) {
+    id
+    primerNombre
+    primerApellido
+    Foto
   }
 }
 `;
@@ -21,18 +21,18 @@ export interface PersonaType {
 }
 
 interface PersonaResponse {
-  person: PersonaType;
+  persona: PersonaType;
 }
 
 interface PersonasResponse {
-  person: PersonaType[];
+  persona: PersonaType[];
 }
 
 
 @Injectable({
   providedIn: 'root',
 })
-export class GraphqlService {
+export class PersonaService {
 
 
   constructor(private apollo: Apollo) {
@@ -43,7 +43,7 @@ export class GraphqlService {
       query: PERSON_QUERY,
       variables: { cedula: cedula }
     });
-    return await query.toPromise().then(res => res.data.person);
+    return await query.toPromise().then(res => res.data.persona);
   }
 
 }

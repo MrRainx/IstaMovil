@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
-import { PersonaType, GraphqlService } from 'src/services/Persona';
+import { UsuarioType, UsuarioService } from 'src/services/Usuario';
 
 
 @Component({
@@ -15,30 +15,22 @@ import { PersonaType, GraphqlService } from 'src/services/Persona';
 
 export class HomePage implements OnInit {
 
-  public persona: PersonaType;
+  public usuario: UsuarioType;
 
-  constructor(private apollo: GraphqlService) {
+  constructor(private apollo: UsuarioService) {
   }
 
   async ngOnInit() {
-    const btnIngresar = document.getElementById("btnIngresar");
-    btnIngresar.addEventListener("click", res =>{
-      res.preventDefault();
-    const usuario = document.getElementById("usuario").nodeValue;
-    const contraseña = document.getElementById("contraseña").nodeValue;
 
-    console.log(usuario);
-    console.log(contraseña);
-    window.open("home.page2.html");
+    this.usuario = await this.apollo.login("ROOT", "WARMANDOCUTULO");
+    console.log(this.usuario)
 
-    })
-    //this.persona = await this.apollo.getPersona("0104925789");
   }
 
-  //ngOnInit();
+
 
   public ingresar() {
-    
-  
-}
+
+
+  }
 }
