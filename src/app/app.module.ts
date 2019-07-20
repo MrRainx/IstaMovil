@@ -43,7 +43,7 @@ export class AppModule {
   ) {
     apollo.create({
       link: httpLink.create({
-        uri: 'http://127.0.0.1:8000/graphql',
+        uri: 'https://istaserver.herokuapp.com/graphql',
         method: 'GET'
       }),
       cache: new InMemoryCache()

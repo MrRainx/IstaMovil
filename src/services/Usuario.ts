@@ -42,6 +42,7 @@ export class UsuarioService {
     }
 
     public async login(username: String, password: String) {
+
         const query = await this.apollo.query<UsuarioResponse>({
             query: LOGIN,
             variables: {
@@ -52,6 +53,7 @@ export class UsuarioService {
         try {
             return await query.toPromise().then(res => res.data.usuario);
         } catch (error) {
+            console.log(error)
             return null;
         }
     }

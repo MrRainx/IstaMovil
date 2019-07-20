@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UsuarioType } from 'src/services/Usuario';
 
 @Component({
@@ -11,10 +11,18 @@ export class InicioPage implements OnInit {
 
   usuario: UsuarioType = null;
 
-  constructor(private activeRoute: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router: Router) {
 
-  ngOnInit() {
-    this.usuario = this.activeRoute.snapshot.paramMap.get('usuario') as UsuarioType;
+  }
+
+  async ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      if (params['usuario']) {
+        console.log("SI EXISTE")
+      } else {
+        console.log("NO EXISTE")
+      }
+    });
   }
 
 }
