@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { UsuarioType, UsuarioService } from 'src/services/Usuario';
-import { Router, NavigationExtras } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,7 +14,10 @@ import { NavController } from '@ionic/angular';
   providedIn: 'root'
 })
 
-export class LoginPage implements OnInit {
+export class LoginPage implements OnInit, OnDestroy {
+  ngOnDestroy(): void {
+    throw new Error("Method not implemented.");
+  }
 
   public usuario: UsuarioType;
   public usuarioIn: string = "ROOT";
@@ -34,16 +36,19 @@ export class LoginPage implements OnInit {
     this.usuario = await this.apollo.login(usuario.value, password.value);
 
     if (this.usuario != null) {
-      let navigationExtras: NavigationExtras = {
+
+      this.router.navigate(['inicio'], {
         state: {
           user: this.usuario
         }
-      };
-      this.router.navigate(['inicio'], navigationExtras);
+      });
     } else {
-      
+
     }
     return false;
   }
+
+
+
 
 }
