@@ -22,21 +22,21 @@ query buscarDocente($cedula: String){
     }
 }`
 
-export interface DocenteType{
-    id?:number,
-    persona?:PersonaType,
-    codigo?:String,
-    otroTrabajo?:boolean;
-    categoria?:number,
-    fechaContrato?:Date,
-    fechaFin?:Date,
-    tipoTiempo?:String,
-    activo?:boolean,
-    observacion?:String,
-    capacitador?:boolean,
-    titulo?:String,
-    abreviatura?:String,
-    enFuncion?:boolean
+export interface DocenteType {
+    id?: number,
+    persona?: PersonaType,
+    codigo?: String,
+    otroTrabajo?: boolean;
+    categoria?: number,
+    fechaContrato?: Date,
+    fechaFin?: Date,
+    tipoTiempo?: String,
+    activo?: boolean,
+    observacion?: String,
+    capacitador?: boolean,
+    titulo?: String,
+    abreviatura?: String,
+    enFuncion?: boolean
 }
 
 interface DocenteResponse {
@@ -51,14 +51,14 @@ interface DocentesResponse {
     providedIn: 'root',
 })
 
-export class DocenteService{
-    constructor(private apollo: Apollo){
+export class DocenteService {
+    constructor(private apollo: Apollo) {
     }
 
-    public async getDocente(cedula: string){
+    public async getDocente(cedula: string) {
         const query = await this.apollo.query<DocenteResponse>({
             query: DOCENTE_QUERY,
-            variables: {cedula:cedula}
+            variables: { cedula: cedula }
         });
         return await query.toPromise().then(res => res.data.docente);
     }
