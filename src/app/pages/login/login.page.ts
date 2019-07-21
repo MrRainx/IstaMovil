@@ -20,8 +20,12 @@ export class LoginPage implements OnInit, OnDestroy {
   }
 
   public usuario: UsuarioType;
-  public usuarioIn: string = "ROOT";
-  public passwordIn: string = "WARMANDOCUTULO";
+
+  public user = {
+    username: '',
+    password: ''
+  }
+
 
   constructor(private apollo: UsuarioService, private router: Router) {
   }
@@ -31,12 +35,11 @@ export class LoginPage implements OnInit, OnDestroy {
 
   }
 
-  async btnIngresar(usuario: HTMLInputElement, password: HTMLInputElement) {
-
-    this.usuario = await this.apollo.login(usuario.value, password.value);
+  async onSubmitTemplate() {
+    console.log("ENVIADO")
+    this.usuario = await this.apollo.login(this.user.username, this.user.password);
 
     if (this.usuario != null) {
-
       this.router.navigate(['inicio'], {
         state: {
           user: this.usuario
@@ -46,6 +49,7 @@ export class LoginPage implements OnInit, OnDestroy {
 
     }
     return false;
+
   }
 
 
