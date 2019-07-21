@@ -40,16 +40,18 @@
                         <ion-input tye="text" [(ngModel)]="user.username" name="usuario" required>
                         </ion-input>
                     </ion-item>
-
+                    <!--input usuario-->
                     <ion-item>
                         <ion-label position="floating">Contaseña:</ion-label>
                         <ion-input [(ngModel)]="user.password" type="password" name="password" required>
                         </ion-input>
                     </ion-item>
-
+                    <!--input password-->
+                    
                 </ion-list>
 
                 <ion-button expand="block" type="submit" [disabled]="formulario.invalid">Ingresar</ion-button>
+                <!--boton enviar-->
             </form>
 
 

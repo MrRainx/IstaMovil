@@ -22,8 +22,8 @@ export class LoginPage implements OnInit, OnDestroy {
   public usuario: UsuarioType;
 
   public user = {
-    username: '',
-    password: ''
+    username: 'ROOT',
+    password: 'WARMANDOCUTULO'
   }
 
 
@@ -35,10 +35,8 @@ export class LoginPage implements OnInit, OnDestroy {
 
   }
 
-  async onSubmitTemplate() {
-    console.log("ENVIADO")
+  private async onSubmitTemplate() {
     this.usuario = await this.apollo.login(this.user.username, this.user.password);
-
     if (this.usuario != null) {
       this.router.navigate(['inicio'], {
         state: {
