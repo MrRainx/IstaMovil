@@ -20,23 +20,23 @@ query buscarDocente($cedula: String){
         abreviatura
         enFuncion
     }
-}`
+}`;
 
 export interface DocenteType {
-    id?: number,
-    persona?: PersonaType,
-    codigo?: String,
+    id?: number;
+    persona?: PersonaType;
+    codigo?: string;
     otroTrabajo?: boolean;
-    categoria?: number,
-    fechaContrato?: Date,
-    fechaFin?: Date,
-    tipoTiempo?: String,
-    activo?: boolean,
-    observacion?: String,
-    capacitador?: boolean,
-    titulo?: String,
-    abreviatura?: String,
-    enFuncion?: boolean
+    categoria?: number;
+    fechaContrato?: Date;
+    fechaFin?: Date;
+    tipoTiempo?: string;
+    activo?: boolean;
+    observacion?: string;
+    capacitador?: boolean;
+    titulo?: string;
+    abreviatura?: string;
+    enFuncion?: boolean;
 }
 
 interface DocenteResponse {

@@ -20,9 +20,10 @@ usuario(username: $username, password: $password) {
 
 
 export interface UsuarioType {
-    username?: string,
-    password?: string,
-    persona?: PersonaType
+    username?: string;
+    password?: string;
+    estado?: boolean;
+    persona?: PersonaType;
 }
 
 interface UsuarioResponse {
