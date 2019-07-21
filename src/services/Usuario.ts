@@ -53,7 +53,7 @@ export class UsuarioService {
         try {
             return await query.toPromise().then(res => res.data.usuario);
         } catch (error) {
-            console.log(error)
+            console.log(error);
             return null;
         }
     }
