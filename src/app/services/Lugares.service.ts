@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
+import { LugaresType } from '../interfaces/Lugares';
 
 const LUGARES_QUERY = gql`
 query buscarLugar(){
@@ -8,14 +9,7 @@ query buscarLugar(){
     }
 }`;
 
-export interface LugaresType {
-    id?: number;
-    codigo?: string;
-    nombre?: string;
-    nivel?: number;
-    idLugarReferencia?: LugaresType;
 
-}
 
 interface LugarResponse {
     lugares: LugaresType;

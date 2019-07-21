@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { AlumnoCursoType } from './AlumnoCurso';
-import { TipoNotaType } from './TipoNota';
+import { NotaType } from '../interfaces/Nota';
 
 const NOTAS_QUERY = gql`
 query buscarNotas(){
@@ -10,19 +9,14 @@ query buscarNotas(){
     }
 }`;
 
-export interface NotasType {
-    id?: number;
-    valor?: number;
-    alumnoCurso?: AlumnoCursoType;
-    tipoNota?: TipoNotaType;
-}
+
 
 interface NotaResponse {
-    notas: NotasType;
+    notas: NotaType;
 }
 
 interface NotasResponse {
-    notas: NotasType[];
+    notas: NotaType[];
 }
 
 @Injectable({
@@ -36,7 +30,7 @@ export class NotasService {
     public async getNotas() {
         const query = await this.apollo.query<NotaResponse>({
             query: NOTAS_QUERY,
-            variables: { }
+            variables: {}
         });
         return await query.toPromise().then(res => res.data.notas);
     }

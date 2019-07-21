@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { CarreraType } from './Carreras';
+import { PeriodoLectivoType } from '../interfaces/PeriodoLectivo';
 
 const PERIODO_LECTIVO_QUERY = gql`
 query buscarPeriodoLectivo(){
@@ -9,17 +9,7 @@ query buscarPeriodoLectivo(){
     }
 }`;
 
-export interface PeriodoLectivoType {
-    id?: number;
-    carrera?: CarreraType;
-    nombre?: string;
-    fechaInicio?: Date;
-    fechaFin?: Date;
-    observacion?: string;
-    estado?: boolean;
-    activo?: boolean;
-    numeroCierre?: number;
-}
+
 
 interface PeriodoLectivoResponse {
     periodolectivo: PeriodoLectivoType;

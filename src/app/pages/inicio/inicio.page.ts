@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UsuarioType } from 'src/services/Usuario';
+import { UsuarioType } from 'src/app/interfaces/Usuario';
 
 @Component({
   selector: 'app-inicio',
@@ -9,16 +9,14 @@ import { UsuarioType } from 'src/services/Usuario';
 })
 export class InicioPage implements OnInit {
 
-  usuario: UsuarioType = null;
+  usuario: UsuarioType;
   data: any;
-  constructor(private route: ActivatedRoute, private router: Router) {
-
+  constructor(private router: Router) {
     try {
       this.usuario = this.router.getCurrentNavigation().extras.state.user as UsuarioType;
     } catch (error) {
-      console.error(error)
+      this.router.navigate(['inicio']);
     }
-
 
   }
 

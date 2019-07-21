@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { ActivatedRoute } from '@angular/router';
+import { SectorEconomicoType } from '../interfaces/SectorEconomico';
 
 const SECTOR_ECONOMICO_QUERY = gql`
 query buscarSectorEconomico(){
@@ -9,12 +9,7 @@ query buscarSectorEconomico(){
     }
 }`;
 
-export interface SectorEconomicoType {
-    id?: number;
-    codigo?: string;
-    descripcion?: string;
-    activo?: boolean;
-}
+
 
 interface SectorEconomicoResponse {
     sectoreconomico: SectorEconomicoType;

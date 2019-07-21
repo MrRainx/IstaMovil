@@ -1,25 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { DocenteType } from './Docente';
+import { CarreraType } from '../interfaces/Carreras';
 
 const CARRERA_QUERY = gql`
 query buscarCarrera(){
     carrera() {
     }
 }`;
-
-export interface CarreraType {
-    id?: number;
-    docenteCoordinador?: DocenteType;
-    nombre?: string;
-    codigo?: string;
-    fechaInicio?: Date;
-    fechaFin?: Date;
-    modalidad?: string;
-    activo?: boolean;
-    semanas?: number;
-}
 
 interface CarreraResponse {
     carrera: CarreraType;

@@ -13,6 +13,7 @@ import { ApolloModule, Apollo } from "apollo-angular";
 import { HttpLinkModule, HttpLink } from "apollo-angular-link-http";
 import { HttpClientModule } from "@angular/common/http";
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { environment } from '../environments/environment'
 
 @NgModule({
   declarations: [AppComponent],
@@ -43,7 +44,7 @@ export class AppModule {
   ) {
     apollo.create({
       link: httpLink.create({
-        uri: 'https://istaserver.herokuapp.com/graphql',
+        uri: `${environment.api}`,
         method: 'GET'
       }),
       cache: new InMemoryCache()

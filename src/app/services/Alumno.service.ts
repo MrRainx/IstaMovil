@@ -1,8 +1,7 @@
-import { PersonaType } from './Persona';
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { SectorEconomicoType } from './SectorEconomico';
+import { AlumnoType } from '../interfaces/Alumno';
 
 const ALUMNO_QUERY = gql`
 query buscarAlumno($cedula: String){
@@ -30,28 +29,6 @@ query buscarAlumno($cedula: String){
     }
 }`;
 
-export interface AlumnoType {
-    id?: number;
-    persona?: PersonaType;
-    sectorEconomico?: SectorEconomicoType;
-    codigo?: string;
-    tipoColegio?: string;
-    tipoBachillerato?: string;
-    anioGraduacion?: string;
-    educacionSuperior?: boolean;
-    tituloSuperior?: string;
-    nivelAcademico?: string;
-    pension?: boolean;
-    ocupacion?: string;
-    trabaja?: boolean;
-    nivelFormacionPadre?: string;
-    nivelFormacionMadre?: string;
-    nombreContactoEmergencia?: string;
-    parentescoContacto?: string;
-    numeroContacto?: string;
-    activo?: boolean;
-    observacion?: string;
-}
 
 interface AlumnoResponse {
     alumno: AlumnoType;

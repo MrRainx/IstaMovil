@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { CursosType } from './Cursos';
-import { Time } from '@angular/common';
+import { SesionClaseType } from '../interfaces/SesionClase';
 
 const SESION_CLASE_QUERY = gql`
 query buscarSesionClase(){
@@ -10,13 +9,6 @@ query buscarSesionClase(){
     }
 }`;
 
-export interface SesionClaseType {
-    id?: number;
-    curso?: CursosType;
-    dia?: number;
-    horaInicio?: Time;
-    horaFin?: Time;
-}
 
 interface SesionClaseResponse {
     sesionclase: SesionClaseType;

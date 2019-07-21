@@ -1,7 +1,7 @@
-import { PersonaType } from './Persona';
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
+import { DocenteType } from '../interfaces/Docente';
 
 const DOCENTE_QUERY = gql`
 query buscarDocente($cedula: String){
@@ -22,22 +22,7 @@ query buscarDocente($cedula: String){
     }
 }`;
 
-export interface DocenteType {
-    id?: number;
-    persona?: PersonaType;
-    codigo?: string;
-    otroTrabajo?: boolean;
-    categoria?: number;
-    fechaContrato?: Date;
-    fechaFin?: Date;
-    tipoTiempo?: string;
-    activo?: boolean;
-    observacion?: string;
-    capacitador?: boolean;
-    titulo?: string;
-    abreviatura?: string;
-    enFuncion?: boolean;
-}
+
 
 interface DocenteResponse {
     docente: DocenteType;

@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Injectable } from '@angular/core';
-import { UsuarioType, UsuarioService } from 'src/services/Usuario';
+import { UsuarioService } from 'src/app/services/Usuario.service';
 import { Router } from '@angular/router';
+import { UsuarioType } from 'src/app/interfaces/Usuario';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class LoginPage implements OnInit, OnDestroy {
   }
 
 
-  constructor(private apollo: UsuarioService, private router: Router) {
+  constructor(private usuarioServ: UsuarioService, private router: Router) {
   }
 
   async ngOnInit() {
@@ -36,8 +37,11 @@ export class LoginPage implements OnInit, OnDestroy {
   }
 
   private async onSubmitTemplate() {
-    this.usuario = await this.apollo.login(this.user.username, this.user.password);
+    this.usuario = await this.usuarioServ.login(this.user.username, this.user.password);
     if (this.usuario != null) {
+
+      console.log(this.usuarioServ.getUserFromJSON());
+
       this.router.navigate(['inicio'], {
         state: {
           user: this.usuario
