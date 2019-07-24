@@ -10,10 +10,10 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { ApolloModule, Apollo } from "apollo-angular";
-import { HttpLinkModule, HttpLink } from "apollo-angular-link-http";
 import { HttpClientModule } from "@angular/common/http";
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { environment } from '../environments/environment'
+import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 
 @NgModule({
   declarations: [AppComponent],

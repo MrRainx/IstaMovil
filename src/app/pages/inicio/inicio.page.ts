@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { UsuarioType } from 'src/app/interfaces/Usuario';
 
 @Component({
@@ -9,19 +9,21 @@ import { UsuarioType } from 'src/app/interfaces/Usuario';
 })
 export class InicioPage implements OnInit {
 
-  usuario: UsuarioType;
-  data: any;
-  constructor(private router: Router) {
-    try {
-      this.usuario = this.router.getCurrentNavigation().extras.state.user as UsuarioType;
-    } catch (error) {
-      this.router.navigate(['inicio']);
-    }
+  public usuario: UsuarioType;
+  public data: any;
+
+  constructor(private route: ActivatedRoute) {
 
   }
 
   async ngOnInit() {
+    try {
 
+      this.usuario = await this.route.queryParams.toPromise().then(data => data)
+
+    } catch (error) {
+
+    }
   }
 
 }
