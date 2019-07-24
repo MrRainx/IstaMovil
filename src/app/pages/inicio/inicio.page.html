@@ -1,17 +1,67 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>inicio</ion-title>
-  </ion-toolbar>
+    <ion-toolbar color="primary">
+        <ion-title>inicio</ion-title>
+    </ion-toolbar>
+    <style>
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        
+        th,
+        td,
+        tr {
+            border: 1px solid black;
+            text-align: center;
+            padding: 8px;
+        }
+        
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            height: 100%
+        }
+    </style>
 </ion-header>
 
 
 
 <ion-content>
 
-  <div>
-    
-  </div>
-  <ion-img src="data:image/png;base64,{{usuario.persona.Foto}}"></ion-img>
+    <div>
+
+    </div>
+    <ion-img src="data:image/png;base64,{{usuario.persona.Foto}}"></ion-img>
+    <table>
+        <tr>
+            <th>CURSOS</th>
+            <th>NUMERO DE MATERIAS</th>
+        </tr>
+        <tr>
+            <td>...</td>
+            <td>...</td>
+        </tr>
+        <tr>
+            <td>...</td>
+            <td>...</td>
+        </tr>
+        <tr>
+            <td>...</td>
+            <td>...</td>
+        </tr>
+        <tr>
+            <td>...</td>
+            <td>...</td>
+        </tr>
+        <tr>
+            <td>...</td>
+            <td>...</td>
+        </tr>
+        <tr>
+            <td>...</td>
+            <td>...</td>
+        </tr>
+    </table>
 
 
 </ion-content>
