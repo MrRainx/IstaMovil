@@ -29,7 +29,7 @@ export class MateriasService {
     constructor(private apollo: Apollo) {
     }
 
-    public getMateriasDocente(cedula: String, idPeriodo: Number, cursoNombre: String) {
+    public getMateriasDocente({ cedula, idPeriodo, cursoNombre }) {
 
         return this.apollo.query<MateriasResponse>({
             query: MATERIAS_DOCENTE,

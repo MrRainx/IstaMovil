@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text="Regresar" defaultHref="cursos/{{params.cedula}}/{{params.idPeriodo}}"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Materias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+
+    <ion-list-header>
+      <ion-label>
+        <h1 text-center>Materia</h1>
+      </ion-label>
+    </ion-list-header>
+
+
+    <ion-item button *ngFor="let materia of materias;"
+      routerLink="/alumnos-curso/{{params.cedula}}/{{params.idPeriodo}}/{{params.cursoNombre}}/{{materia.id}}">
+      <ion-label>
+        <h6>{{materia.nombre}}</h6>
+      </ion-label>
+    </ion-item>
+    <!--CURSOS-->
+
+
+
+  </ion-list>
+
+
+</ion-content>

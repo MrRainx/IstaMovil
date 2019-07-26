@@ -31,7 +31,7 @@ export class CursosService {
     constructor(private apollo: Apollo) {
     }
 
-    public getCursosDocente(cedula: String, idPeriodo: Number) {
+    public getCursosDocente({ cedula, idPeriodo }) {
         return this.apollo.query<CursosResponse>({
             query: CURSOS_DOCENTE,
             variables: {

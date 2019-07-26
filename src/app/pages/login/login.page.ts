@@ -37,7 +37,7 @@ export class LoginPage implements OnInit {
     this.usuario = await this.usuarioServ.login(this.user.username, this.user.password);
 
     if (this.usuario != null) {
-      this.router.navigate(['inicio', this.usuario.persona.identificacion]);
+      this.router.navigate(['periodos', this.usuario.persona.identificacion]);
     }
 
   }

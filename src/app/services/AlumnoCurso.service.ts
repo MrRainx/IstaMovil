@@ -3,11 +3,30 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { AlumnoCursoType } from '../interfaces/AlumnoCurso';
 
-const ALUMNO_CURSO_QUERY = gql`
-query buscarAlumnoCurso(){
-    alumnocurso() {
+const ALUMNOS_CURSO_NOTAS = gql`
+query getAlumnosCurso($cedulaDocente: String!, $idPeriodo: Int!, $cursoNombre: String!, $idMateria: Int!) {
+  alumnosCurso(cedulaDocente: $cedulaDocente, idPeriodo: $idPeriodo, cursoNombre: $cursoNombre, idMateria: $idMateria) {
+    id
+    asistencia
+    notaFinal
+    estado
+    numFaltas
+    numMatricula
+    alumno {
+      id
+      persona {
+        id
+        identificacion
+        primerNombre
+        segundoNombre
+        primerApellido
+        segundoApellido
+        Foto
+      }
     }
-}`;
+  }
+}
+`;
 
 
 
@@ -16,7 +35,7 @@ interface AlumnoCursoResponse {
 }
 
 interface AlumnosCursosResponse {
-    alumnocurso: AlumnoCursoType[];
+    alumnosCurso: AlumnoCursoType[];
 }
 
 @Injectable({
@@ -24,14 +43,19 @@ interface AlumnosCursosResponse {
 })
 
 export class AlumnoCursoService {
+
     constructor(private apollo: Apollo) {
     }
 
-    public async getAlumnoCurso() {
-        const query = await this.apollo.query<AlumnoCursoResponse>({
-            query: ALUMNO_CURSO_QUERY,
-            variables: {}
+    public getAlumnoCurso({ cedula, idPeriodo, cursoNombre, idMateria }) {
+        return this.apollo.query<AlumnosCursosResponse>({
+            query: ALUMNOS_CURSO_NOTAS,
+            variables: {
+                cedulaDocente: cedula,
+                idPeriodo: idPeriodo,
+                cursoNombre: cursoNombre,
+                idMateria: idMateria
+            }
         });
-        return await query.toPromise().then(res => res.data.alumnocurso);
     }
 }

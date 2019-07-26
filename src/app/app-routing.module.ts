@@ -11,7 +11,13 @@ const routes: Routes = [
     path: 'login',
     loadChildren: './pages/login/login.module#LoginPageModule'
   },
-  { path: 'inicio/:cedula', loadChildren: './pages/inicio/inicio.module#InicioPageModule' }
+  { path: 'periodos/:cedula', loadChildren: './pages/periodos/periodos.module#PeriodosPageModule' },
+  { path: 'cursos/:cedula/:idPeriodo', loadChildren: './pages/cursos/cursos.module#CursosPageModule' },
+  { path: 'materias/:cedula/:idPeriodo/:cursoNombre', loadChildren: './pages/materias/materias.module#MateriasPageModule' },
+  { path: 'alumnos-curso/:cedula/:idPeriodo/:cursoNombre/:idMateria', loadChildren: './pages/alumnos-curso/alumnos-curso.module#AlumnosCursoPageModule' }
+
+
+
 
 
 ];
