@@ -11,7 +11,9 @@ const routes: Routes = [
     path: 'login',
     loadChildren: './pages/login/login.module#LoginPageModule'
   },
-  { path: 'inicio', loadChildren: './pages/inicio/inicio.module#InicioPageModule' }
+  { path: 'inicio', loadChildren: './pages/inicio/inicio.module#InicioPageModule' },  { path: 'card', loadChildren: './pages/card/card.module#CardPageModule' },
+  { path: 'informacion', loadChildren: './pages/informacion/informacion.module#InformacionPageModule' }
+
 
 
 ];
