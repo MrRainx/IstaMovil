@@ -3,11 +3,19 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { PeriodoLectivoType } from '../interfaces/PeriodoLectivo';
 
-const PERIODO_LECTIVO_QUERY = gql`
-query buscarPeriodoLectivo(){
-    periodolectivo() {
+const PERIODOS_DOCENTE = gql`
+query periodosDocente($cedula: String!) {
+  periodosDocente(cedula: $cedula) {
+    id
+    nombre
+    carrera {
+      id
+      nombre
     }
-}`;
+  }
+}
+
+`;
 
 
 
@@ -16,7 +24,7 @@ interface PeriodoLectivoResponse {
 }
 
 interface PeriodosLectivosResponse {
-    periodolectivo: PeriodoLectivoType[];
+    periodosDocente: PeriodoLectivoType[];
 }
 
 @Injectable({
@@ -24,14 +32,15 @@ interface PeriodosLectivosResponse {
 })
 
 export class PeriodoLectivoService {
-    constructor(private apollo: Apollo) {
-    }
 
-    public async getPeriodoLectivo() {
-        const query = await this.apollo.query<PeriodoLectivoResponse>({
-            query: PERIODO_LECTIVO_QUERY,
-            variables: { }
+    constructor(private apollo: Apollo) { }
+
+    public getPeriodoLectivo(cedula: String) {
+        return this.apollo.query<PeriodosLectivosResponse>({
+            query: PERIODOS_DOCENTE,
+            variables: {
+                cedula: cedula
+            }
         });
-        return await query.toPromise().then(res => res.data.periodolectivo);
     }
 }

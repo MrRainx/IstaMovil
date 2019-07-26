@@ -3,11 +3,14 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { CursosType } from '../interfaces/Curso';
 
-const CURSOS_QUERY = gql`
-query buscarCursos(){
-    cursos() {
-    }
-}`;
+const CURSOS_DOCENTE = gql`
+query getCursosDocentes($cedula: String!, $idPeriodo: Int!) {
+  cursosDocente(cedula: $cedula, idPeriodo: $idPeriodo) {
+    id
+    nombre
+  }
+}
+`;
 
 
 
@@ -16,7 +19,7 @@ interface CursoResponse {
 }
 
 interface CursosResponse {
-    cursos: CursosType[];
+    cursosDocente: CursosType[];
 }
 
 @Injectable({
@@ -24,14 +27,17 @@ interface CursosResponse {
 })
 
 export class CursosService {
+
     constructor(private apollo: Apollo) {
     }
 
-    public async getCursos() {
-        const query = await this.apollo.query<CursosResponse>({
-            query: CURSOS_QUERY,
-            variables: {}
+    public getCursosDocente(cedula: String, idPeriodo: Number) {
+        return this.apollo.query<CursosResponse>({
+            query: CURSOS_DOCENTE,
+            variables: {
+                cedula: cedula,
+                idPeriodo: idPeriodo
+            }
         });
-        return await query.toPromise().then(res => res.data.cursos);
     }
 }

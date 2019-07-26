@@ -8,12 +8,9 @@ const LOGIN = gql`
 query login($username: String!, $password: String!) {
 usuario(username: $username, password: $password) {
     username
-    Password
     persona{
       id
-      primerNombre
-      primerApellido
-      Foto
+      identificacion
     }
   }
 }
@@ -52,28 +49,6 @@ export class UsuarioService {
             console.log(error);
             return null;
         }
-    }
-
-    public async saveUser(usuario: UsuarioType) {
-        /*fs.writeFile('../../assets/user.json', usuario, (err) => {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            console.log('Usuario Guardado')
-        });*/
-        JSON.stringify(usuario);
-    }
-
-    public async getUserFromJSON() {
-        var user: UsuarioType;
-        this.http.get('../../assets/user.json')
-            .subscribe((data) => {
-                user = data;
-            })
-
-
-        return user;
     }
 
 }
