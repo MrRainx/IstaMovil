@@ -51,26 +51,4 @@ export class UsuarioService {
         }
     }
 
-    public async saveUser(usuario: UsuarioType) {
-        /*fs.writeFile('../../assets/user.json', usuario, (err) => {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            console.log('Usuario Guardado')
-        });*/
-        JSON.stringify(usuario);
-    }
-
-    public async getUserFromJSON() {
-        var user: UsuarioType;
-        this.http.get('../../assets/user.json')
-            .subscribe((data) => {
-                user = data;
-            })
-
-
-        return user;
-    }
-
 }

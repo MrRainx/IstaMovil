@@ -3,18 +3,22 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { MateriaType } from '../interfaces/Materia';
 
-const MATERIAS_QUERY = gql`
-query buscarMaterias(){
-    materias() {
-    }
-}`;
+const MATERIAS_DOCENTE = gql`
+query getMateriasDocente($cedula: String!, $idPeriodo: Int!, $cursoNombre: String!) {
+  materiasDocente(cedula: $cedula, idPeriodo: $idPeriodo, cursoNombre: $cursoNombre) {
+    id
+    nombre
+  }
+}
+
+`;
 
 interface MateriaResponse {
     materias: MateriaType;
 }
 
 interface MateriasResponse {
-    materias: MateriaType[];
+    materiasDocente: MateriaType[];
 }
 
 @Injectable({
@@ -25,11 +29,16 @@ export class MateriasService {
     constructor(private apollo: Apollo) {
     }
 
-    public async getMaterias() {
-        const query = await this.apollo.query<MateriasResponse>({
-            query: MATERIAS_QUERY,
-            variables: { }
+    public getMateriasDocente(cedula: String, idPeriodo: Number, cursoNombre: String) {
+
+        return this.apollo.query<MateriasResponse>({
+            query: MATERIAS_DOCENTE,
+            variables: {
+                cedula: cedula,
+                idPeriodo: idPeriodo,
+                cursoNombre: cursoNombre
+            }
         });
-        return await query.toPromise().then(res => res.data.materias);
+
     }
 }
