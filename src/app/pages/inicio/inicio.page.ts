@@ -28,6 +28,7 @@ export class InicioPage implements OnInit {
     this.periodos = await this.periodoSrv.getPeriodoLectivo(this.cedula)
       .toPromise()
       .then(data => data.data.periodosDocente);
+
     this.periodoNombre = this.periodos[0].nombre
 
   }
