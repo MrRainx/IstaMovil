@@ -2,65 +2,28 @@
     <ion-toolbar color="primary">
         <ion-title>Inicio</ion-title>
     </ion-toolbar>
-    <style>
-        tr:nth-child(even) {
-            background-color: #dddddd;
-        }
-        
-        th,
-        td,
-        tr {
-            border: 1px solid black;
-            text-align: center;
-            padding: 8px;
-        }
-        
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-            height: 100%
-        }
-    </style>
+
 </ion-header>
 
 
 
-<ion-content>
+<ion-content padding>
+    <form action="" (ngSubmit)="onSubmitTemplate()">
+        <ion-list>
 
-    <div>
+            <ion-item>
+                <ion-label position="floating">Periodos Lectivos</ion-label>
+                <ion-select placeholder="{{periodoNombre}}" [(ngModel)]="periodoNombre" name="prdLectivo"
+                    (ngModelChange)="cmbPeriodo()">
+                    <ion-select-option *ngFor="let periodo of periodos;">
+                        {{periodo.nombre}}
+                    </ion-select-option>
+                </ion-select>
 
-    </div>
-    <ion-img src="data:image/png;base64,{{usuario.persona.Foto}}"></ion-img>
-    <table>
-        <tr>
-            <th>CURSOS</th>
-            <th>NUMERO DE MATERIAS</th>
-        </tr>
-        <tr>
-            <td>...</td>
-            <td>...</td>
-        </tr>
-        <tr>
-            <td>...</td>
-            <td>...</td>
-        </tr>
-        <tr>
-            <td>...</td>
-            <td>...</td>
-        </tr>
-        <tr>
-            <td>...</td>
-            <td>...</td>
-        </tr>
-        <tr>
-            <td>...</td>
-            <td>...</td>
-        </tr>
-        <tr>
-            <td>...</td>
-            <td>...</td>
-        </tr>
-    </table>
+            </ion-item>
+            <ion-button expand="block" type="submit">Ingresar</ion-button>
+
+        </ion-list>
+    </form>
 
 </ion-content>

@@ -8,12 +8,9 @@ const LOGIN = gql`
 query login($username: String!, $password: String!) {
 usuario(username: $username, password: $password) {
     username
-    Password
     persona{
       id
-      primerNombre
-      primerApellido
-      Foto
+      identificacion
     }
   }
 }

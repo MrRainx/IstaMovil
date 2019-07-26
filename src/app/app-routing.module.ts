@@ -11,7 +11,7 @@ const routes: Routes = [
     path: 'login',
     loadChildren: './pages/login/login.module#LoginPageModule'
   },
-  { path: 'inicio', loadChildren: './pages/inicio/inicio.module#InicioPageModule' }
+  { path: 'inicio/:cedula', loadChildren: './pages/inicio/inicio.module#InicioPageModule' }
 
 
 ];
@@ -22,4 +22,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

@@ -15,10 +15,7 @@ import { UsuarioType } from 'src/app/interfaces/Usuario';
   providedIn: 'root'
 })
 
-export class LoginPage implements OnInit, OnDestroy {
-  ngOnDestroy(): void {
-    throw new Error("Method not implemented.");
-  }
+export class LoginPage implements OnInit {
 
   public usuario: UsuarioType;
 
@@ -38,19 +35,10 @@ export class LoginPage implements OnInit, OnDestroy {
 
   private async onSubmitTemplate() {
     this.usuario = await this.usuarioServ.login(this.user.username, this.user.password);
+
     if (this.usuario != null) {
-
-      console.log(this.usuarioServ.getUserFromJSON());
-
-      this.router.navigate(['inicio'], {
-        state: {
-          user: this.usuario
-        }
-      });
-    } else {
-
+      this.router.navigate(['inicio', this.usuario.persona.identificacion]);
     }
-    return false;
 
   }
 
