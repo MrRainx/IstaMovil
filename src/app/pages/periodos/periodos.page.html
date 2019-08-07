@@ -28,7 +28,27 @@
         </ion-item>
         <!--PERIODOS LECTIVOS-->
 
+        <ion-item>
+            <ion-label>Pizza</ion-label>
+            <ion-select placeholder="Select Pizza" [(ngModel)]="selected" (ionChange)="doRefresh()">
+                <ion-select-option *ngFor="let item of comb1">
+                    {{item}}
+                </ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>second</ion-label>
+            <ion-select multiple="true" placeholder="Select Pizza">
+                <ion-select-option *ngFor="let item of second">{{item}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+
 
     </ion-list>
+
+
+
+
 
 </ion-content>
