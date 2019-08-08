@@ -1,7 +1,8 @@
 import { AlumnoType } from './Alumno';
 import { Curso } from './Curso';
+import { NotaType } from './Nota';
 
-export interface AlumnoCursoType {
+export interface AlumnoCurso {
     id?: number;
     alumno?: AlumnoType;
     curso?: Curso;
@@ -12,4 +13,5 @@ export interface AlumnoCursoType {
     fechaRegistro?: Date;
     activo?: boolean;
     numeroMatricula?: number;
+    notasSet?: NotaType[];
 }

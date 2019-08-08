@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PeriodoLectivoService } from '../../services/PeriodoLectivo.service';
 import { PeriodoLectivo } from '../../interfaces/PeriodoLectivo';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Curso } from '../../interfaces/Curso';
 import { CursosService } from '../../services/Curso.service';
 import { MateriasService } from '../../services/Materia.service';
@@ -30,7 +30,8 @@ export class FormNotasPage implements OnInit {
     private periodoSrv: PeriodoLectivoService,
     private cursoSrv: CursosService,
     private materiaSrv: MateriasService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   async ngOnInit() {
@@ -47,6 +48,7 @@ export class FormNotasPage implements OnInit {
     this.cursos = this.cursoSrv.getAllCursos(this.periodoPk)
     this.cursoNombre = this.cursos[0]
     this.materias = this.materiaSrv.getAllMaterias(this.cursoNombre, this.periodoPk);
+    this.materia = this.materias[0]
 
   }
 
@@ -64,11 +66,7 @@ export class FormNotasPage implements OnInit {
 
 
   verRegistro() {
-
-    console.log("----->" + this.periodoPk)
-    console.log(this.cursoNombre)
-    console.log(this.materia)
-
+    this.router.navigate(['alumnos-curso', this.cedula, this.periodoPk, this.cursoNombre, this.materia]);
   }
 
 

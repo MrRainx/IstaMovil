@@ -19,7 +19,12 @@ const routes: Routes = [
   {
     path: 'form-notas/:cedula',
     loadChildren: './pages/form-notas/form-notas.module#FormNotasPageModule'
-  }
+  },
+  { path: 'alumnos-curso/:cedulaDocente/:idPeriodo/:cursoNombre/:nombreMateria', loadChildren: './pages/alumnos-curso/alumnos-curso.module#AlumnosCursoPageModule' },
+
+  { path: 'notas-alumno/:idAlumno', loadChildren: './pages/notas-alumno/notas-alumno.module#NotasAlumnoPageModule' }
+
+
 
 
 

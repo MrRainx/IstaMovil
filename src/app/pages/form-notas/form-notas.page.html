@@ -3,36 +3,42 @@
 
 <ion-content>
 
-    <ion-item>
-        <ion-label position="floating">Periodos</ion-label>
-        <ion-select [(ngModel)]="periodoPk" (ionChange)="changePeriodos()">
-            <ion-select-option *ngFor="let prd of periodos;" value="{{prd.id}}">
-                {{prd.nombre}}
-            </ion-select-option>
-        </ion-select>
-    </ion-item>
 
-    <ion-item class="ion-margin-top">
-        <ion-label position="floating">Cursos</ion-label>
-        <ion-select [(ngModel)]="cursoNombre" (ionChange)="changeCursos()">
-            <ion-select-option *ngFor="let curso of cursos;" value="{{curso}}">
-                {{curso}}
-            </ion-select-option>
-        </ion-select>
-    </ion-item>
 
-    <ion-item class="ion-margin-top">
-        <ion-label position="floating">Materias</ion-label>
-        <ion-select [(ngModel)]="materia">
-            <ion-select-option *ngFor="let materia of materias;" value="{{materia}}">
-                {{materia}}
-            </ion-select-option>
-        </ion-select>
-    </ion-item>
 
-    <ion-button (click)="verRegistro()">
-        Ver Registro de Notas
-    </ion-button>
+    <ion-card>
+        <ion-item>
+            <ion-label position="floating">Periodos</ion-label>
+            <ion-select [(ngModel)]="periodoPk" (ionChange)="changePeriodos()">
+                <ion-select-option *ngFor="let prd of periodos;" value="{{prd.id}}">
+                    {{prd.nombre}}
+                </ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item class="ion-margin-top">
+            <ion-label position="floating">Cursos</ion-label>
+            <ion-select [(ngModel)]="cursoNombre" (ionChange)="changeCursos()">
+                <ion-select-option *ngFor="let curso of cursos;" value="{{curso}}">
+                    {{curso}}
+                </ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item class="ion-margin-top">
+            <ion-label position="floating">Materias</ion-label>
+            <ion-select [(ngModel)]="materia">
+                <ion-select-option *ngFor="let materia of materias;" value="{{materia}}">
+                    {{materia}}
+                </ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-button class="ion-margin-top" expand="block" (click)="verRegistro()">
+            Ver Registro de Notas
+        </ion-button>
+
+    </ion-card>
 
 
 

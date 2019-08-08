@@ -1,9 +1,9 @@
-import { AlumnoCursoType } from './AlumnoCurso';
+import { AlumnoCurso } from './AlumnoCurso';
 import { TipoNotaType } from './TipoNota';
 
 export interface NotaType {
     id?: number;
     valor?: number;
-    alumnoCurso?: AlumnoCursoType;
+    alumnoCurso?: AlumnoCurso;
     tipoNota?: TipoNotaType;
 }
