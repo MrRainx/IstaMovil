@@ -33,7 +33,7 @@ export class LoginPage implements OnInit {
 
   }
 
-  private async onSubmitTemplate() {
+  public async onSubmitTemplate() {
     this.usuario = await this.usuarioServ.login(this.user.username, this.user.password);
 
     if (this.usuario != null) {
