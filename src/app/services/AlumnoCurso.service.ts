@@ -28,6 +28,7 @@ query getAlumnosCurso($cedulaDocente: String!, $idPeriodo: Int!, $cursoNombre: S
         segundoNombre
         primerApellido
         segundoApellido
+        Foto
       }
     }
   }

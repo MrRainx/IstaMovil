@@ -2,11 +2,18 @@
 
 <ion-content>
 
-  <h1 text-center>NOTAS DE:</h1>
-  <h1 text-center>{{alumno.alumno.persona.primerNombre}}</h1>
-  <h1 text-center>{{alumno.alumno.persona.primerApellido}}</h1>
+
 
   <ion-list>
+
+    <h4 text-center>NOTAS DE:</h4>
+    <h4 text-center>{{alumno.alumno.persona.primerNombre}}</h4>
+    <h4 text-center>{{alumno.alumno.persona.primerApellido}}</h4>
+
+    <ion-item>
+      <img src="data:image/jpeg;base64,{{alumno.alumno.persona.Foto}}" alt="S/I" />
+    </ion-item>
+
     <ion-item *ngFor="let nota of alumno.notasSet">
       <ion-label>{{nota.tipoNota.nombre}}</ion-label>
       <ion-label slot="end">{{nota.valor}}</ion-label>
