@@ -12,8 +12,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { ApolloModule, Apollo } from "apollo-angular";
 import { HttpClientModule } from "@angular/common/http";
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import { environment } from '../environments/environment'
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +24,8 @@ import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
     AppRoutingModule,
     ApolloModule,
     HttpLinkModule,
-    HttpClientModule
+    HttpClientModule,
+    ComponentsModule
   ],
   providers: [
     StatusBar,
@@ -44,8 +45,8 @@ export class AppModule {
   ) {
     apollo.create({
       link: httpLink.create({
-        //uri: 'http://localhost:8000/graphql',
-        uri: 'https://istaserver.herokuapp.com/graphql',
+        uri: 'http://localhost:8000/graphql',
+        //uri: 'https://istaserver.herokuapp.com/graphql',
         method: 'GET'
       }),
       cache: new InMemoryCache()

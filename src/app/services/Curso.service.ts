@@ -1,13 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { CursosType } from '../interfaces/Curso';
+import { Curso } from '../interfaces/Curso';
 
 const CURSOS_DOCENTE = gql`
-query getCursosDocentes($cedula: String!, $idPeriodo: Int!) {
-  cursosDocente(cedula: $cedula, idPeriodo: $idPeriodo) {
+query getCursosDocentes($cedula: String!) {
+  cursos(cedulaDocente: $cedula) {
     id
     nombre
+    prdLectivo {
+      id
+      nombre
+    }
+    docente {
+      id
+    }
   }
 }
 `;
@@ -15,11 +22,11 @@ query getCursosDocentes($cedula: String!, $idPeriodo: Int!) {
 
 
 interface CursoResponse {
-    cursos: CursosType;
+    cursos: Curso;
 }
 
 interface CursosResponse {
-    cursosDocente: CursosType[];
+    cursos: Curso[];
 }
 
 @Injectable({
@@ -28,16 +35,31 @@ interface CursosResponse {
 
 export class CursosService {
 
+    private cursos: Curso[];
+
     constructor(private apollo: Apollo) {
     }
 
-    public getCursosDocente({ cedula, idPeriodo }) {
-        return this.apollo.query<CursosResponse>({
+    public async setCursosDocente(cedula: string) {
+        const query = await this.apollo.query<CursosResponse>({
             query: CURSOS_DOCENTE,
             variables: {
-                cedula: cedula,
-                idPeriodo: idPeriodo
+                cedula: cedula
             }
-        });
+        })
+
+        const result = await query.toPromise().then(data => data.data.cursos);
+        this.cursos = result;
+    }
+
+    public getAllCursos(idPeriodo: number) {
+        try {
+            const nombres = new Set(this.cursos.filter(item => item.prdLectivo.id == idPeriodo)
+                .map(c => c.nombre))
+            return nombres;
+
+        } catch (error) {
+            return null;
+        }
     }
 }

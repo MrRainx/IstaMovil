@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { UsuarioService } from 'src/app/services/Usuario.service';
 import { Router } from '@angular/router';
@@ -37,7 +37,7 @@ export class LoginPage implements OnInit {
     this.usuario = await this.usuarioServ.login(this.user.username, this.user.password);
 
     if (this.usuario != null) {
-      this.router.navigate(['periodos', this.usuario.persona.identificacion]);
+      this.router.navigate(['form-notas', this.usuario.persona.identificacion]);
     }
 
   }

@@ -1,4 +1,4 @@
-import { PeriodoLectivoType } from './PeriodoLectivo';
+import { PeriodoLectivo } from './PeriodoLectivo';
 
 export interface TipoNotaType {
     id?: number;
@@ -7,5 +7,5 @@ export interface TipoNotaType {
     valorMaximo?: number;
     fechaCreacion?: Date;
     estado?: boolean;
-    periodoLectivo?: PeriodoLectivoType;
+    periodoLectivo?: PeriodoLectivo;
 }

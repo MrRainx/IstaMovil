@@ -1,11 +1,11 @@
 import { DocenteType } from './Docente';
-import { MateriaType } from './Materia';
-import { PeriodoLectivoType } from './PeriodoLectivo';
+import { Materia } from './Materia';
+import { PeriodoLectivo } from './PeriodoLectivo';
 
-export interface CursosType {
+export interface Curso {
     id?: number;
-    materia?: MateriaType;
-    periodoLectivo?: PeriodoLectivoType;
+    materia?: Materia;
+    prdLectivo?: PeriodoLectivo;
     docente?: DocenteType;
     nombre?: string;
     capacidad?: number;

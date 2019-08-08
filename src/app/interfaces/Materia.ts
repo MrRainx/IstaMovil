@@ -1,8 +1,9 @@
-import { CarreraType } from './Carreras';
+import { Carrera } from './Carreras';
+import { Curso } from './Curso';
 
-export interface MateriaType {
+export interface Materia {
     id?: number;
-    carrera?: CarreraType;
+    carrera?: Carrera;
     codigo?: string;
     nombre?: string;
     ciclo?: number;
@@ -22,4 +23,5 @@ export interface MateriaType {
     organizacionCurricular?: string;
     campoFormacion?: string;
     nucleo?: boolean;
+    cursosSet?: Curso[]
 }

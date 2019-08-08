@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { CarreraType } from '../interfaces/Carreras';
+import { Carrera } from '../interfaces/Carreras';
 
 const CARRERA_QUERY = gql`
 query buscarCarrera(){
@@ -10,11 +10,11 @@ query buscarCarrera(){
 }`;
 
 interface CarreraResponse {
-    carrera: CarreraType;
+    carrera: Carrera;
 }
 
 interface CarrerasResponse {
-    carrera: CarreraType[];
+    carrera: Carrera[];
 }
 
 @Injectable({
@@ -28,7 +28,7 @@ export class CarreraService {
     public async getCarrera() {
         const query = await this.apollo.query<CarreraResponse>({
             query: CARRERA_QUERY,
-            variables: { }
+            variables: {}
         });
         return await query.toPromise().then(res => res.data.carrera);
     }

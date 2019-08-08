@@ -1,6 +1,6 @@
 import { DocenteType } from './Docente';
 
-export interface CarreraType {
+export interface Carrera {
     id?: number;
     docenteCoordinador?: DocenteType;
     nombre?: string;

@@ -1,8 +1,8 @@
-import { CarreraType } from './Carreras';
+import { Carrera } from './Carreras';
 
-export interface PeriodoLectivoType {
+export interface PeriodoLectivo {
     id?: number;
-    carrera?: CarreraType;
+    carrera?: Carrera;
     nombre?: string;
     fechaInicio?: Date;
     fechaFin?: Date;

@@ -1,10 +1,10 @@
 import { AlumnoType } from './Alumno';
-import { CursosType } from './Curso';
+import { Curso } from './Curso';
 
 export interface AlumnoCursoType {
     id?: number;
     alumno?: AlumnoType;
-    curso?: CursosType;
+    curso?: Curso;
     asistencia?: string;
     notaFinal?: number;
     estado?: string;

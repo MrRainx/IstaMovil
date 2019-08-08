@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { PeriodoLectivoType } from '../interfaces/PeriodoLectivo';
+import { PeriodoLectivo } from '../interfaces/PeriodoLectivo';
 
 const PERIODOS_DOCENTE = gql`
 query periodosDocente($cedula: String!) {
@@ -20,11 +20,11 @@ query periodosDocente($cedula: String!) {
 
 
 interface PeriodoLectivoResponse {
-    periodolectivo: PeriodoLectivoType;
+    periodolectivo: PeriodoLectivo;
 }
 
 interface PeriodosLectivosResponse {
-    periodosDocente: PeriodoLectivoType[];
+    periodosDocente: PeriodoLectivo[];
 }
 
 @Injectable({
