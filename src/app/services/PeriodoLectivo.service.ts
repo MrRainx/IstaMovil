@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import { PeriodoLectivo } from '../interfaces/PeriodoLectivo';
 
 const PERIODOS_DOCENTE = gql`
-query periodosDocente($cedula: String!) {
+query periodosDocente($cedula: string!) {
   periodosDocente(cedula: $cedula) {
     id
     nombre
@@ -35,7 +35,7 @@ export class PeriodoLectivoService {
 
     constructor(private apollo: Apollo) { }
 
-    public getPeriodoLectivo(cedula: String) {
+    public getPeriodoLectivo(cedula: string) {
         return this.apollo.query<PeriodosLectivosResponse>({
             query: PERIODOS_DOCENTE,
             variables: {

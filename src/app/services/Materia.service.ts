@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import { Materia } from '../interfaces/Materia';
 
 const MATERIAS_DOCENTE = gql`
-query getMateriasDocente($cedula: String!) {
+query getMateriasDocente($cedula: string!) {
     materias(cedulaDocente: $cedula) {
     id
     nombre

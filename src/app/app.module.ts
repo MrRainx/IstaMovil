@@ -39,15 +39,10 @@ import { ComponentsModule } from './components/components.module';
 export class AppModule {
 
 
-  constructor(
-    apollo: Apollo,
-    httpLink: HttpLink
-  ) {
+  constructor(apollo: Apollo, httpLink: HttpLink) {
     apollo.create({
       link: httpLink.create({
-        //uri: 'http://localhost:8000/graphql',
-        uri: 'https://istaserver.herokuapp.com/graphql',
-        method: 'GET'
+        uri: 'http://35.192.7.211:80/graphql'
       }),
       cache: new InMemoryCache()
     });

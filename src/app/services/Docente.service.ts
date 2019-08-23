@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import { DocenteType } from '../interfaces/Docente';
 
 const DOCENTE_QUERY = gql`
-query buscarDocente($cedula: String){
+query buscarDocente($cedula: string){
     docente(cedula: $cedula) {
         id
         codigo

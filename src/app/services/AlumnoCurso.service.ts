@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import { AlumnoCurso } from '../interfaces/AlumnoCurso';
 
 const ALUMNOS_CURSO_NOTAS = gql`
-query getAlumnosCurso($cedulaDocente: String!, $idPeriodo: Int!, $cursoNombre: String!, $nombreMateria: String!) {
+query getAlumnosCurso($cedulaDocente: string!, $idPeriodo: Int!, $cursoNombre: string!, $nombreMateria: string!) {
   alumnosCurso(cedulaDocente: $cedulaDocente, idPeriodo: $idPeriodo, cursoNombre: $cursoNombre, nombreMateria: $nombreMateria) {
     id
     asistencia

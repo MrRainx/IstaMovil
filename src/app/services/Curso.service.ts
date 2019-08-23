@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import { Curso } from '../interfaces/Curso';
 
 const CURSOS_DOCENTE = gql`
-query getCursosDocentes($cedula: String!) {
+query getCursosDocentes($cedula: string!) {
   cursos(cedulaDocente: $cedula) {
     id
     nombre

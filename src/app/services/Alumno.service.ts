@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import { AlumnoType } from '../interfaces/Alumno';
 
 const ALUMNO_QUERY = gql`
-query buscarAlumno($cedula: String){
+query buscarAlumno($cedula: string){
     alumno(cedula: $cedula) {
         id
         persona

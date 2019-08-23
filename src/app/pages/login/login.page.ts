@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { UsuarioService } from 'src/app/services/Usuario.service';
 import { Router } from '@angular/router';
-import { UsuarioType } from 'src/app/interfaces/Usuario';
+import { Usuario } from 'src/app/interfaces/Usuario';
 
 
 @Component({
@@ -17,11 +17,11 @@ import { UsuarioType } from 'src/app/interfaces/Usuario';
 
 export class LoginPage implements OnInit {
 
-  public usuario: UsuarioType;
+  public usuario: Usuario;
 
   public user = {
-    username: 'ROOT',
-    password: 'WARMANDOCUTULO'
+    username: '0103156675',
+    password: '1234'
   }
 
 
@@ -33,9 +33,9 @@ export class LoginPage implements OnInit {
 
   }
 
-  public async onSubmitTemplate() {
+  async onSubmitTemplate() {
     this.usuario = await this.usuarioServ.login(this.user.username, this.user.password);
-
+    console.log(this.usuario);
     if (this.usuario != null) {
       this.router.navigate(['form-notas', this.usuario.persona.identificacion]);
     }

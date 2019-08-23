@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import { PersonaType } from '../interfaces/Persona';
 
 const PERSON_QUERY = gql`
-query buscarPersona($cedula: String) {
+query buscarPersona($cedula: string) {
   persona(cedula: $cedula) {
     id
     idLugarNatal
