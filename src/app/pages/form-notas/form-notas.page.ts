@@ -36,30 +36,28 @@ export class FormNotasPage implements OnInit {
 
   async ngOnInit() {
     this.cedula = this.route.snapshot.params.cedula;
-    this.periodos = await this.periodoSrv.getPeriodoLectivo(this.cedula)
-      .toPromise()
-      .then(data => data.data.periodosDocente)
+    this.periodos = await this.periodoSrv.getPeriodoLectivo(this.cedula);
 
-    this.periodoPk = this.periodos[0].id
 
     await this.cursoSrv.setCursosDocente(this.cedula)
     await this.materiaSrv.setMateriasDocente(this.cedula)
 
     this.cursos = this.cursoSrv.getAllCursos(this.periodoPk)
+    this.materias = this.materiaSrv.getAllMaterias(this.cursoNombre, this.periodoPk);
+    this.periodoPk = this.periodos[0].id
+  }
+
+
+
+  async changePeriodos() {
+    this.cursos = await this.cursoSrv.getAllCursos(this.periodoPk)
+    this.materias = await this.materiaSrv.getAllMaterias(this.cursoNombre, this.periodoPk);
     this.cursoNombre = this.cursos[0]
-    this.materias = this.materiaSrv.getAllMaterias(this.cursoNombre, this.periodoPk);
     this.materia = this.materias[0]
-
   }
 
-
-
-  changePeriodos() {
-    this.cursos = this.cursoSrv.getAllCursos(this.periodoPk)
-  }
-
-  changeCursos() {
-    this.materias = this.materiaSrv.getAllMaterias(this.cursoNombre, this.periodoPk);
+  async changeCursos() {
+    this.materias = await this.materiaSrv.getAllMaterias(this.cursoNombre, this.periodoPk);
   }
 
 

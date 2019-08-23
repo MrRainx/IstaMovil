@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
+import { Responses } from './Responses';
 import { PeriodoLectivo } from '../interfaces/PeriodoLectivo';
 
 const PERIODOS_DOCENTE = gql`
-query periodosDocente($cedula: string!) {
+query periodosDocente($cedula: String!) {
   periodosDocente(cedula: $cedula) {
     id
     nombre
@@ -18,29 +19,22 @@ query periodosDocente($cedula: string!) {
 `;
 
 
-
-interface PeriodoLectivoResponse {
-    periodolectivo: PeriodoLectivo;
-}
-
-interface PeriodosLectivosResponse {
-    periodosDocente: PeriodoLectivo[];
-}
-
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root',
 })
 
 export class PeriodoLectivoService {
 
-    constructor(private apollo: Apollo) { }
+  constructor(private apollo: Apollo) { }
 
-    public getPeriodoLectivo(cedula: string) {
-        return this.apollo.query<PeriodosLectivosResponse>({
-            query: PERIODOS_DOCENTE,
-            variables: {
-                cedula: cedula
-            }
-        });
-    }
+  public async getPeriodoLectivo(cedula: string): Promise<PeriodoLectivo[]> {
+    const query = await this.apollo.query<Responses>({
+      query: PERIODOS_DOCENTE,
+      variables: {
+        cedula: cedula
+      }
+    });
+
+    return (await query.toPromise()).data.periodosDocente
+  }
 }

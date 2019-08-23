@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { Curso } from '../interfaces/Curso';
+import { Responses } from './Responses';
 
 const CURSOS_DOCENTE = gql`
-query getCursosDocentes($cedula: string!) {
+query getCursosDocentes($cedula: String!) {
   cursos(cedulaDocente: $cedula) {
     id
     nombre
@@ -20,15 +21,6 @@ query getCursosDocentes($cedula: string!) {
 `;
 
 
-
-interface CursoResponse {
-    cursos: Curso;
-}
-
-interface CursosResponse {
-    cursos: Curso[];
-}
-
 @Injectable({
     providedIn: 'root',
 })
@@ -41,15 +33,15 @@ export class CursosService {
     }
 
     public async setCursosDocente(cedula: string) {
-        const query = await this.apollo.query<CursosResponse>({
+        const query = await this.apollo.query<Responses>({
             query: CURSOS_DOCENTE,
             variables: {
                 cedula: cedula
             }
         })
 
-        const result = await query.toPromise().then(data => data.data.cursos);
-        this.cursos = result;
+        this.cursos = (await query.toPromise()).data.cursos;
+
     }
 
     public getAllCursos(idPeriodo: number) {

@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { AlumnoCurso } from '../interfaces/AlumnoCurso';
+import { Responses } from './Responses';
 
 const ALUMNOS_CURSO_NOTAS = gql`
-query getAlumnosCurso($cedulaDocente: string!, $idPeriodo: Int!, $cursoNombre: string!, $nombreMateria: string!) {
+query getAlumnosCurso($cedulaDocente: String!, $idPeriodo: Int!, $cursoNombre: String!, $nombreMateria: String!) {
   alumnosCurso(cedulaDocente: $cedulaDocente, idPeriodo: $idPeriodo, cursoNombre: $cursoNombre, nombreMateria: $nombreMateria) {
     id
     asistencia
@@ -35,16 +36,6 @@ query getAlumnosCurso($cedulaDocente: string!, $idPeriodo: Int!, $cursoNombre: s
 }
 `;
 
-
-
-interface AlumnoCursoResponse {
-  alumnocurso: AlumnoCurso;
-}
-
-interface AlumnosCursosResponse {
-  alumnosCurso: AlumnoCurso[];
-}
-
 @Injectable({
   providedIn: 'root',
 })
@@ -62,7 +53,7 @@ export class AlumnoCursoService {
     console.log(cursoNombre)
     console.log(nombreMateria)
 
-    return this.apollo.query<AlumnosCursosResponse>({
+    return this.apollo.query<Responses>({
       query: ALUMNOS_CURSO_NOTAS,
       variables: {
         cedulaDocente: cedula,

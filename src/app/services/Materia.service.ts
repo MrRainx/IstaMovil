@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { Materia } from '../interfaces/Materia';
+import { Responses } from './Responses';
 
 const MATERIAS_DOCENTE = gql`
-query getMateriasDocente($cedula: string!) {
+query getMateriasDocente($cedula: String!) {
     materias(cedulaDocente: $cedula) {
     id
     nombre
@@ -25,13 +26,7 @@ query getMateriasDocente($cedula: string!) {
 
 `;
 
-interface MateriaResponse {
-    materias: Materia;
-}
 
-interface MateriasResponse {
-    materias: Materia[];
-}
 
 @Injectable({
     providedIn: 'root',
@@ -46,7 +41,7 @@ export class MateriasService {
 
     public async setMateriasDocente(cedula: string) {
 
-        const query = await this.apollo.query<MateriasResponse>({
+        const query = await this.apollo.query<Responses>({
             query: MATERIAS_DOCENTE,
             variables: {
                 cedula: cedula

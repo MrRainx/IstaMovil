@@ -6,15 +6,16 @@ import { HttpClient } from '@angular/common/http';
 import { Responses } from './Responses';
 
 const LOGIN = gql`
-query login($username: string!, $password: string!) {
-login(username: $username, password: $password) {
+query login($username: String!, $password: String!) {
+  login(username: $username, password: $password) {
     username
-    persona{
+    persona {
       id
       identificacion
     }
   }
 }
+
 `;
 
 @Injectable({
@@ -30,10 +31,12 @@ export class UsuarioService {
         const query = await this.apollo.query<Responses>({
             query: LOGIN,
             variables: {
-                usuario: usuario,
+                username: usuario,
                 password: password
             }
         })
+
+        query.toPromise().then(data => console.log(data))
 
         return (await query.toPromise()).data.login
 
