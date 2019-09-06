@@ -9,6 +9,9 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
+
+  public showMenu: boolean;
+
   public appPages = [
     {
       title: 'Home',

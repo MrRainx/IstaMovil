@@ -14,6 +14,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { ComponentsModule } from './components/components.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +27,8 @@ import { ComponentsModule } from './components/components.module';
     ApolloModule,
     HttpLinkModule,
     HttpClientModule,
-    ComponentsModule
+    ComponentsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     StatusBar,
@@ -42,7 +45,7 @@ export class AppModule {
   constructor(apollo: Apollo, httpLink: HttpLink) {
     apollo.create({
       link: httpLink.create({
-        uri: 'http://35.192.7.211:80/graphql'
+        uri: 'http://35.192.7.211:8000/graphql'
       }),
       cache: new InMemoryCache()
     });
