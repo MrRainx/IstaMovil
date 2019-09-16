@@ -1,0 +1,45 @@
+<app-header></app-header>
+<ion-content>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12" size-md="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-img [src]="'data:image/jpeg;base64,'+ user.persona.Foto"></ion-img>
+            <ion-card-title class="ion-text-center">
+              <h2 class="text-dark">
+                {{user.persona.primerNombre}} {{user.persona.primerApellido}}
+              </h2>
+            </ion-card-title>
+
+          </ion-card-header>
+
+
+
+          <ion-list>
+            <ion-list-header>
+              <ion-text>
+                <h3 class="font-weight-bold">Roles:</h3>
+              </ion-text>
+            </ion-list-header>
+            <ion-item *ngFor="let rol of user.roles">
+              <ion-text color="primary">
+                <h6>{{rol}}</h6>
+              </ion-text>
+            </ion-item>
+          </ion-list>
+
+
+
+
+
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+
+
+</ion-content>

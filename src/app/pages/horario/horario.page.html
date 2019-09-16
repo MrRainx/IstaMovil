@@ -1,0 +1,41 @@
+<app-header [title]="'HORARIOS'"></app-header>
+
+<ion-content>
+
+    <ion-list>
+        <ion-list-header class="ion-text-center" color="medium">
+            <h5>
+                Seleccione un Periodo Lectivo
+            </h5>
+        </ion-list-header>
+
+
+        <ion-item class="select-100">
+            <ion-select placeholder="Seleccione un periodo" [(ngModel)]="periodo" (ionChange)="select()">
+                <ion-select-option [value]="periodo" *ngFor="let periodo of periodos; let i = index;">
+                    {{periodo.nombre}}
+                </ion-select-option>
+            </ion-select>
+        </ion-item>
+        <!--COMBO BOX-->
+        <ion-item color="dark">
+            <ion-label class="ion-text-center">{{periodo.nombre}}</ion-label>
+        </ion-item>
+        <!--PERIODO SELECCIONADO-->
+
+    </ion-list>
+
+
+
+    <app-card-horario [title]="'Lunes'" [horario]="horarioLunes"></app-card-horario>
+    <app-card-horario [title]="'Martes'" [horario]="horarioMartes"></app-card-horario>
+    <app-card-horario [title]="'Miercoles'" [horario]="horarioMiercoles"></app-card-horario>
+    <app-card-horario [title]="'Jueves'" [horario]="horarioJueves"></app-card-horario>
+    <app-card-horario [title]="'Viernes'" [horario]="horarioViernes"></app-card-horario>
+
+
+
+
+
+
+</ion-content>
