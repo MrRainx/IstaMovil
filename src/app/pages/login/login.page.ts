@@ -20,8 +20,8 @@ export class LoginPage implements OnInit {
   public usuario: Usuario;
 
   public user = {
-    username: '0104925789',
-    password: '0104925789'
+    username: '',
+    password: ''
   }
 
 
