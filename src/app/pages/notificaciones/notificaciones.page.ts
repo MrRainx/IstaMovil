@@ -4,6 +4,7 @@ import { User } from '../../interfaces/user';
 import { NotasService } from '../notas/services/notas.service';
 import { LoginService } from '../login/services/login.service';
 import { HorarioService } from '../horario/services/horario.service';
+import { NotificacionesService } from './services/notificaciones.service';
 
 @Component({
   selector: 'app-notificaciones',
@@ -26,27 +27,28 @@ export class NotificacionesPage implements OnInit {
   public obj = {
     titulo: '',
     mensaje: '',
-    periodo: null,
-    curso: '',
-    cedula: '',
+    periodoCurso: null,
+    cursoReceptor: '',
+    cedulaDocente: '',
     rol: ''
   }
 
   constructor(
     private horarioSrv: HorarioService,
     private loginSrv: LoginService,
-    private notasSrv: NotasService
+    private notasSrv: NotasService,
+    private srv: NotificacionesService
 
   ) { }
 
   async ngOnInit() {
     this.user = await this.loginSrv.getUserLoggedIn()
 
-    this.obj.cedula = await this.user.persona.identificacion;
+    this.obj.cedulaDocente = await this.user.persona.identificacion;
     this.obj.rol = await this.loginSrv.getRol()
 
-    this.periodos = await this.horarioSrv.getPeriodos(this.obj.cedula, this.obj.rol);
-    this.obj.periodo = this.periodos[0];
+    this.periodos = await this.horarioSrv.getPeriodos(this.obj.cedulaDocente, this.obj.rol);
+    this.obj.periodoCurso = this.periodos[0];
 
     await this.loadCursos()
   }
@@ -55,13 +57,13 @@ export class NotificacionesPage implements OnInit {
     await this.loadCursos()
   }
   private async loadCursos() {
-    this.cursos = await this.notasSrv.getCursos(this.obj.cedula, this.obj.periodo.id, this.obj.rol)
-    this.obj.curso = this.cursos[0]
+    this.cursos = await this.notasSrv.getCursos(this.obj.cedulaDocente, this.obj.periodoCurso.id, this.obj.rol)
+    this.obj.cursoReceptor = this.cursos[0]
   }
 
 
   async enviar() {
-
+    await this.srv.enviarNotificacion(this.obj)
   }
 
 }

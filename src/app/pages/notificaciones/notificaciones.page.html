@@ -13,7 +13,7 @@
         </ion-text>
       </ion-item>
 
-      <ion-select [(ngModel)]="obj.periodo" required name="cmbPeriodo" (ionChange)="chngPeriodo()"
+      <ion-select [(ngModel)]="obj.periodoCurso" required name="cmbPeriodo" (ionChange)="chngPeriodo()"
         placeholder="Seleccione un Periodo Lectivo">
         <ion-select-option [value]="periodo" *ngFor="let periodo of periodos">
           {{periodo.nombre}}
@@ -27,7 +27,7 @@
           <h6>Seleccione un Curso</h6>
         </ion-text>
       </ion-item>
-      <ion-select [(ngModel)]="obj.curso" required name="cmbCurso" placeholder="Seleccione un Curo">
+      <ion-select [(ngModel)]="obj.cursoReceptor" required name="cmbCurso" placeholder="Seleccione un Curo">
         <ion-select-option [value]="curso" *ngFor="let curso of cursos">
           {{curso}}
         </ion-select-option>
