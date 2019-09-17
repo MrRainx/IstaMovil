@@ -5,7 +5,8 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
   { path: 'informacion', loadChildren: './pages/informacion/informacion.module#InformacionPageModule' },
-  { path: 'home', loadChildren: './pages/home/home.module#HomePageModule' },  { path: 'horario', loadChildren: './pages/horario/horario.module#HorarioPageModule' }
+  { path: 'home', loadChildren: './pages/home/home.module#HomePageModule' },  { path: 'horario', loadChildren: './pages/horario/horario.module#HorarioPageModule' },
+  { path: 'notas', loadChildren: './pages/notas/notas.module#NotasPageModule' }
 
 
 ];

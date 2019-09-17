@@ -3,25 +3,23 @@
 <ion-content>
 
     <ion-list>
-        <ion-list-header class="ion-text-center" color="medium">
-            <h5>
+        <ion-list-header class="ion-text-center" color="dark">
+            <h6>
                 Seleccione un Periodo Lectivo
-            </h5>
+            </h6>
         </ion-list-header>
 
 
-        <ion-item class="select-100">
-            <ion-select placeholder="Seleccione un periodo" [(ngModel)]="periodo" (ionChange)="select()">
+
+        <div>
+            <ion-select [(ngModel)]="periodo" (ionChange)="select()">
                 <ion-select-option [value]="periodo" *ngFor="let periodo of periodos; let i = index;">
                     {{periodo.nombre}}
                 </ion-select-option>
             </ion-select>
-        </ion-item>
+        </div>
+
         <!--COMBO BOX-->
-        <ion-item color="dark">
-            <ion-label class="ion-text-center">{{periodo.nombre}}</ion-label>
-        </ion-item>
-        <!--PERIODO SELECCIONADO-->
 
     </ion-list>
 

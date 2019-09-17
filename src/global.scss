@@ -11,6 +11,14 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 .select-100 {
-  max-width: 100%;
-  white-space: pre-line;
+  width: 100%;
+}
+
+.text-selected {
+  font-size: 11px;
+}
+
+.set-in-bottom {
+  position: fixed;
+  bottom: 10px;
 }

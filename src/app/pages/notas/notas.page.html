@@ -1,0 +1,91 @@
+<app-header [title]="'Notas'"></app-header>
+
+<ion-content>
+
+
+    <ion-list>
+
+
+
+        <ion-card>
+            <form #form="ngForm">
+
+                <ion-item color="dark">
+                    <ion-text>
+                        <h6>Seleccione un Periodo Lectivo</h6>
+                    </ion-text>
+                </ion-item>
+
+                <ion-select [(ngModel)]="periodo" required name="cmbPeriodo" (ionChange)="chngPeriodo()"
+                    placeholder="Seleccione un Periodo Lectivo">
+                    <ion-select-option [value]="periodo" *ngFor="let periodo of periodos">
+                        {{periodo.nombre}}
+                    </ion-select-option>
+                </ion-select>
+                <!--COMBO BOX PERIODO-->
+
+
+                <ion-item color="dark">
+                    <ion-text>
+                        <h6>Seleccione un Curso</h6>
+                    </ion-text>
+                </ion-item>
+                <ion-select [(ngModel)]="curso" required name="cmbCurso" (ionChange)="chgCurso()"
+                    placeholder="Seleccione un Curo">
+                    <ion-select-option [value]="curso" *ngFor="let curso of cursos">
+                        {{curso}}
+                    </ion-select-option>
+                </ion-select>
+                <!--COMBO BOX CURSOS-->
+
+                <ion-item color="dark">
+                    <ion-text>
+                        <h6>Seleccione una Materia</h6>
+                    </ion-text>
+                </ion-item>
+
+                <ion-select [(ngModel)]="materia" required name="cmbMateria" (ionChange)="chgMaterias()"
+                    placeholder="Seleccione una Materia">
+                    <ion-select-option [value]="materia" *ngFor="let materia of materias">
+                        {{materia}}
+                    </ion-select-option>
+                </ion-select>
+                <!--COMBO BOX MATERIAS-->
+
+                <ion-button expand="block" [disabled]="form.invalid" (click)="verNotas()">
+                    Ver Notas
+                </ion-button>
+            </form>
+        </ion-card>
+
+
+
+        <ng-template [ngIf]="notas.length > 0">
+            <ion-item color="dark">
+                <ion-text>
+                    <h6>Notas:</h6>
+                </ion-text>
+            </ion-item>
+
+            <ion-item *ngFor="let nota of notas" routerLink="/home">
+                <ion-avatar slot="start">
+                    <img [src]="'data:image/jpeg;base64,'+ nota.alumno.persona.Foto" />
+                </ion-avatar>
+                <ion-label>
+
+                    {{nota.alumno.persona.primerNombre}}
+                    {{nota.alumno.persona.primerApellido}}
+
+                </ion-label>
+
+            </ion-item>
+
+        </ng-template>
+
+
+
+
+    </ion-list>
+
+
+</ion-content>

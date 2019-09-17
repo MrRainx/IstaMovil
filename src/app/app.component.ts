@@ -53,5 +53,11 @@ export class AppComponent implements OnInit {
   }
 
 
+  cerrarSesion() {
+    this.loginSrv.LOGOUT()
+    window.location.reload()
+  }
+
+
 
 }

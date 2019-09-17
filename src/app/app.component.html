@@ -12,9 +12,15 @@
                     <ion-list>
                         <ion-item routerLink="/home">Inicio</ion-item>
                         <ion-item routerLink="/horario">Horario</ion-item>
-                        <ion-item>Notas</ion-item>
+                        <ion-item routerLink="/notas">Notas</ion-item>
                         <ion-item>Notificaciones</ion-item>
                     </ion-list>
+                    <ion-footer class="set-in-bottom">
+                        <ion-button (click)="cerrarSesion()" expand="full">
+                            Cerrar Sesion
+                        </ion-button>
+                    </ion-footer>
+
                 </ion-content>
             </ion-menu>
 

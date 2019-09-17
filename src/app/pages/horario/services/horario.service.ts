@@ -6,29 +6,35 @@ import { SesionClaseType } from '../../../interfaces/SesionClase';
 
 const PERIODOS = gql`
 query buscarPeriodos($cedula: String!, $rol: String!) {
-  periodos(cedula: $cedula, rol: $rol) {
-    id
-    nombre
+  appNotas {
+    periodos(cedula: $cedula, rol: $rol) {
+      id
+      nombre
+    }
   }
 }
+
 `;
 
 const HORARIO = gql`
 query buscarHorario($cedula: String!, $idPrdLectivo: Int!, $rol: String!) {
-  horario(cedula: $cedula, idPrdLectivo: $idPrdLectivo, rol: $rol) {
-    id
-    dia
-    horaInicio
-    horaFin
-    curso {
+  appNotas {
+    horario(cedula: $cedula, idPrdLectivo: $idPrdLectivo, rol: $rol) {
       id
-      nombre
-      materia {
+      dia
+      horaInicio
+      horaFin
+      curso {
+        id
         nombre
+        materia {
+          nombre
+        }
       }
     }
   }
 }
+
 `;
 
 @Injectable({
@@ -49,7 +55,7 @@ export class HorarioService {
       }
     });
 
-    return (await query.toPromise()).data['periodos']
+    return (await query.toPromise()).data['appNotas']['periodos']
 
 
   }
@@ -61,10 +67,11 @@ export class HorarioService {
         cedula: cedula,
         idPrdLectivo: idPrdLectivo,
         rol: rol
-      }
+      },
+      fetchPolicy: 'network-only'
     })
 
-    return (await query.toPromise()).data['horario']
+    return (await query.toPromise()).data['appNotas']['horario']
 
   }
 
