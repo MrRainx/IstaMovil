@@ -5,6 +5,7 @@ import { NotasService } from '../notas/services/notas.service';
 import { LoginService } from '../login/services/login.service';
 import { HorarioService } from '../horario/services/horario.service';
 import { NotificacionesService } from './services/notificaciones.service';
+import { Notificacion } from 'src/app/interfaces/Notificacion';
 
 @Component({
   selector: 'app-notificaciones',
@@ -29,6 +30,8 @@ export class NotificacionesPage implements OnInit {
     cedulaDocente: ''
   }
 
+  public notificaciones: Notificacion[]
+
   constructor(
     private horarioSrv: HorarioService,
     private loginSrv: LoginService,
@@ -39,14 +42,19 @@ export class NotificacionesPage implements OnInit {
 
   async ngOnInit() {
     this.user = await this.loginSrv.getUserLoggedIn()
-
     this.obj.cedulaDocente = await this.user.persona.identificacion;
     this.rol = await this.loginSrv.getRol()
-
     this.periodos = await this.horarioSrv.getPeriodos(this.obj.cedulaDocente, this.rol);
     this.obj.periodoCurso = this.periodos[0];
-
     await this.loadCursos()
+
+    if (this.rol == 'ALUMNO') {
+      this.notificaciones = await this.srv.getMisNotificaciones({ cedula: this.user.persona.identificacion, rol: this.rol })
+
+      console.log(this.notificaciones);
+    }
+
+
   }
 
   async chngPeriodo() {
@@ -60,6 +68,8 @@ export class NotificacionesPage implements OnInit {
 
   async enviar() {
     await this.srv.enviarNotificacion(this.obj)
+    this.obj.titulo = ''
+    this.obj.mensaje = ''
   }
 
 }

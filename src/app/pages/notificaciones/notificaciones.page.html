@@ -2,7 +2,7 @@
 
 <ion-content>
 
-  <ion-card>
+  <ion-card *ngIf="rol != 'ALUMNO'">
 
 
     <form #form="ngForm">
@@ -55,5 +55,20 @@
 
     </form>
   </ion-card>
+
+  <ion-list *ngIf="rol == 'ALUMNO'">
+
+    <ion-list-header>
+      <ion-label>Notificaciones Recibias</ion-label>
+      <ion-item *ngFor="let notificacion of notificaciones">
+        <ion-label>{{notificacion.titulo}}</ion-label>
+        <ion-text color="primary">
+          <p>notificacion.mensaje</p>
+        </ion-text>
+      </ion-item>
+    </ion-list-header>
+
+  </ion-list>
+
 
 </ion-content>
