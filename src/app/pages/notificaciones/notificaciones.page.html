@@ -60,14 +60,29 @@
 
     <ion-list-header>
       <ion-label>Notificaciones Recibias</ion-label>
-      <ion-item *ngFor="let notificacion of notificaciones">
-        <ion-label>{{notificacion.titulo}}</ion-label>
-        <ion-text color="primary">
-          <p>notificacion.mensaje</p>
-        </ion-text>
-      </ion-item>
     </ion-list-header>
 
+    <ion-card *ngFor="let notificacion of notificaciones">
+      <ion-card-header>
+        <ion-label>Emisor: {{notificacion.emisor.primerNombre}} {{notificacion.emisor.primerApellido}}</ion-label>
+
+      </ion-card-header>
+
+
+      <ion-item>
+        <ion-text color="primary">
+          <h1>Titulo: {{notificacion.titulo}}</h1>
+        </ion-text>
+      </ion-item>
+
+      <ion-item>
+        <ion-text color="primary">
+          Mensaje:
+          <p>{{notificacion.mensaje}}</p>
+        </ion-text>
+      </ion-item>
+
+    </ion-card>
   </ion-list>
 
 
