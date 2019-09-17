@@ -38,14 +38,14 @@
       <ion-item>
         <ion-label position="floating">Titulo:<ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input required placeholder="Ingrese el titulo de su mensaje" name="tituloTxt" [(ngModel)]="titulo">
+        <ion-input required placeholder="Ingrese el titulo de su mensaje" name="tituloTxt" [(ngModel)]="obj.titulo">
         </ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Mensaje: <ion-text color="danger">*</ion-text>
         </ion-label>
         <ion-textarea required placeholder="Ingrese su mensaje" rows="6" cols="20" name="mensajeTxt"
-          [(ngModel)]="mensaje">
+          [(ngModel)]="obj.mensaje">
         </ion-textarea>
       </ion-item>
 

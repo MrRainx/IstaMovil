@@ -19,18 +19,14 @@ export class NotificacionesPage implements OnInit {
 
   public cursos: string[]
 
-
-
-  public titulo: string
-  public mensaje: string
+  public rol: string
 
   public obj = {
     titulo: '',
     mensaje: '',
     periodoCurso: null,
     cursoReceptor: '',
-    cedulaDocente: '',
-    rol: ''
+    cedulaDocente: ''
   }
 
   constructor(
@@ -45,9 +41,9 @@ export class NotificacionesPage implements OnInit {
     this.user = await this.loginSrv.getUserLoggedIn()
 
     this.obj.cedulaDocente = await this.user.persona.identificacion;
-    this.obj.rol = await this.loginSrv.getRol()
+    this.rol = await this.loginSrv.getRol()
 
-    this.periodos = await this.horarioSrv.getPeriodos(this.obj.cedulaDocente, this.obj.rol);
+    this.periodos = await this.horarioSrv.getPeriodos(this.obj.cedulaDocente, this.rol);
     this.obj.periodoCurso = this.periodos[0];
 
     await this.loadCursos()
@@ -57,7 +53,7 @@ export class NotificacionesPage implements OnInit {
     await this.loadCursos()
   }
   private async loadCursos() {
-    this.cursos = await this.notasSrv.getCursos(this.obj.cedulaDocente, this.obj.periodoCurso.id, this.obj.rol)
+    this.cursos = await this.notasSrv.getCursos(this.obj.cedulaDocente, this.obj.periodoCurso.id, this.rol)
     this.obj.cursoReceptor = this.cursos[0]
   }
 
