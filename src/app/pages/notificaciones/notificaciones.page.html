@@ -1,0 +1,59 @@
+<app-header [title]="'Notificaciones'"></app-header>
+
+<ion-content>
+
+  <ion-card>
+
+
+    <form #form="ngForm">
+
+      <ion-item color="dark">
+        <ion-text>
+          <h6>Seleccione un Periodo Lectivo</h6>
+        </ion-text>
+      </ion-item>
+
+      <ion-select [(ngModel)]="obj.periodo" required name="cmbPeriodo" (ionChange)="chngPeriodo()"
+        placeholder="Seleccione un Periodo Lectivo">
+        <ion-select-option [value]="periodo" *ngFor="let periodo of periodos">
+          {{periodo.nombre}}
+        </ion-select-option>
+      </ion-select>
+      <!--COMBO BOX PERIODO-->
+
+
+      <ion-item color="dark">
+        <ion-text>
+          <h6>Seleccione un Curso</h6>
+        </ion-text>
+      </ion-item>
+      <ion-select [(ngModel)]="obj.curso" required name="cmbCurso" placeholder="Seleccione un Curo">
+        <ion-select-option [value]="curso" *ngFor="let curso of cursos">
+          {{curso}}
+        </ion-select-option>
+      </ion-select>
+      <!--COMBO BOX CURSOS-->
+
+
+      <ion-item>
+        <ion-label position="floating">Titulo:<ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required placeholder="Ingrese el titulo de su mensaje" name="tituloTxt" [(ngModel)]="titulo">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Mensaje: <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-textarea required placeholder="Ingrese su mensaje" rows="6" cols="20" name="mensajeTxt"
+          [(ngModel)]="mensaje">
+        </ion-textarea>
+      </ion-item>
+
+      <ion-button expand="full" (click)="enviar()" [disabled]="form.invalid">
+        Enviar
+      </ion-button>
+
+    </form>
+  </ion-card>
+
+</ion-content>
