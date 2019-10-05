@@ -41,9 +41,9 @@ export class NotificacionesPage implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.user = await this.loginSrv.getUserLoggedIn()
-    this.obj.cedulaDocente = await this.user.persona.identificacion;
-    this.rol = await this.loginSrv.getRol()
+    this.user = this.loginSrv.getUserLoggedIn()
+    this.obj.cedulaDocente = this.user.persona.identificacion;
+    this.rol = this.loginSrv.getRol()
     this.periodos = await this.horarioSrv.getPeriodos(this.obj.cedulaDocente, this.rol);
     this.obj.periodoCurso = this.periodos[0];
     await this.loadCursos()

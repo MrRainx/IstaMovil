@@ -16,6 +16,7 @@ import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { ComponentsModule } from './components/components.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { Camera } from '@ionic-native/camera/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,9 +34,8 @@ import { environment } from '../environments/environment';
   providers: [
     StatusBar,
     SplashScreen,
-    {
-      provide: RouteReuseStrategy, useClass: IonicRouteStrategy
-    },
+    Camera,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent]
 })

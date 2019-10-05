@@ -7,17 +7,20 @@ import { User } from '../../../interfaces/user';
 
 const LOGIN = gql`
 query login($username: String!, $password: String!) {
-  login(username: $username, password: $password) {
-    username
-    roles
-    persona {
-      id
-      identificacion
-      primerNombre
-      segundoNombre
-      primerApellido
-      segundoApellido
-      Foto
+
+  appPersonas {
+    login(username: $username, password: $password) {
+      username
+      roles
+      persona {
+        id
+        identificacion
+        primerNombre
+        segundoNombre
+        primerApellido
+        segundoApellido
+        Foto
+      }
     }
   }
 }
@@ -45,7 +48,7 @@ export class LoginService {
       }
     })
 
-    const result = (await query.toPromise()).data['login']
+    const result = (await query.toPromise()).data['appPersonas']['login']
 
     this.LOGIN(result)
 

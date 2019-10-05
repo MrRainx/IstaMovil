@@ -44,7 +44,7 @@ export class NotificacionesService {
 
 
   public async enviarNotificacion(notificacion) {
-    console.log(notificacion);
+
     const mutations = await this.apollo.mutate({
       mutation: ENVIAR_NOTIFICACION,
       variables: {
