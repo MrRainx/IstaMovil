@@ -32,20 +32,6 @@ export class CheckUserService implements CanLoad {
     return false;
   }
 
-  tomarFoto(user) {
-
-    this.camera.getPicture(this.options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
-      // If it's base64 (DATA_URL):
-      let base64Image = 'data:image/jpeg;base64,' + imageData;
-      user.persona.Foto = base64Image
-    }, (err) => {
-      // Handle error
-    });
-
-
-
-  }
 
 
 }
