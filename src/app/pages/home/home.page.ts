@@ -24,7 +24,6 @@ export class HomePage implements OnInit {
 
   onClick() {
 
-
   }
 
 

@@ -5,10 +5,12 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
   { path: 'informacion', loadChildren: './pages/informacion/informacion.module#InformacionPageModule' },
-  { path: 'home', loadChildren: './pages/home/home.module#HomePageModule' },  { path: 'horario', loadChildren: './pages/horario/horario.module#HorarioPageModule' },
+  { path: 'home', loadChildren: './pages/home/home.module#HomePageModule' },
+  { path: 'horario', loadChildren: './pages/horario/horario.module#HorarioPageModule' },
   { path: 'notas', loadChildren: './pages/notas/notas.module#NotasPageModule' },
   { path: 'notas-detail', loadChildren: './pages/notas/notas-detail/notas-detail.module#NotasDetailPageModule' },
-  { path: 'notificaciones', loadChildren: './pages/notificaciones/notificaciones.module#NotificacionesPageModule' }
+  { path: 'notificaciones', loadChildren: './pages/notificaciones/notificaciones.module#NotificacionesPageModule' },
+  { path: 'testing', loadChildren: './pages/testing/testing.module#TestingPageModule' }
 
 
 ];
