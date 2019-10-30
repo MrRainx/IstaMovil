@@ -22,7 +22,7 @@ export class CalendarioService {
   }
 
   public async getCalendarioBy(idPeriodo: number) {
-    const query = await this.apollo.query({
+    const query = this.apollo.query({
       query: buscarCalendarioByPeriodo,
       variables: {
         idPeriodo: idPeriodo

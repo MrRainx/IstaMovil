@@ -13,7 +13,6 @@ export class CalendarioPage implements OnInit {
   public periodos: PeriodoLectivo[]
   public periodo: PeriodoLectivo = {}
 
-  private calendars: CalendarioAcad[]
   public calendario: CalendarioAcad
 
   constructor(
@@ -29,9 +28,8 @@ export class CalendarioPage implements OnInit {
 
 
   async verCalendario() {
-    this.calendars = await this.srv.getCalendarioBy(this.periodo.id)
+    this.calendario = await this.srv.getCalendarioBy(this.periodo.id)
 
-    this.calendario = this.calendars[0]
   }
 
 }
