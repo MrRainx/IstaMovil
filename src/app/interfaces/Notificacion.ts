@@ -3,7 +3,15 @@ export interface Notificacion {
     id?: number
     titulo?: string
     mensaje?: string
-    estado?: boolean
-    emisor?: PersonaType
-    receptor?: PersonaType
+    activo?: boolean
+}
+
+
+
+export interface DetalleNotificacion {
+    id?: number;
+    activo?: boolean;
+    emisor?: PersonaType;
+    receptor?: PersonaType;
+    notificacion?: Notificacion;
 }

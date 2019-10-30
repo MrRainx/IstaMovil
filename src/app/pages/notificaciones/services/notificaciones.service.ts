@@ -18,12 +18,17 @@ query buscarMisNotificaciones($cedula: String!, $modo: String!) {
   appNotificaciones {
     misNotificaciones(cedula: $cedula, modo: $modo) {
       id
-      titulo
-      mensaje
-      fechaEnvio
+      notificacion {
+        id
+        titulo
+        mensaje
+      }
       emisor {
+        id
         primerNombre
         primerApellido
+        segundoNombre
+        segundoApellido
       }
     }
   }
@@ -31,6 +36,18 @@ query buscarMisNotificaciones($cedula: String!, $modo: String!) {
 
 `
 
+
+const ELIMINAR_NOTIFICACION = gql`
+
+mutation eliminarNotificacion($idNotificacion: Int!) {
+  appNotificaciones {
+    eliminarNotificacion(idNotificacion: $idNotificacion) {
+      state
+    }
+  }
+}
+
+`;
 
 
 @Injectable({
@@ -45,7 +62,7 @@ export class NotificacionesService {
 
   public async enviarNotificacion(notificacion) {
 
-    const mutations = await this.apollo.mutate({
+    const mutations = this.apollo.mutate({
       mutation: ENVIAR_NOTIFICACION,
       variables: {
         notificacion: {
@@ -68,11 +85,7 @@ export class NotificacionesService {
     if (rol == 'ALUMNO') {
       rol = 'RECEPTOR'
     }
-
-    console.log(cedula);
-    console.log(rol);
-
-    const query = await this.apollo.query({
+    const query = this.apollo.query({
       query: MIS_NOTIFICACIONES,
       variables: {
         cedula: cedula,
@@ -80,8 +93,18 @@ export class NotificacionesService {
       },
       fetchPolicy: 'network-only'
     })
-
     return (await query.toPromise()).data['appNotificaciones']['misNotificaciones']
+  }
+
+  async eliminarNotificacion(id: number) {
+    const mutate = this.apollo.mutate({
+      mutation: ELIMINAR_NOTIFICACION,
+      variables: {
+        idNotificacion: id
+      }
+    })
+
+    await mutate.toPromise();
 
   }
 

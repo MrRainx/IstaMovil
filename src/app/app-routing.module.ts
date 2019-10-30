@@ -10,7 +10,8 @@ const routes: Routes = [
   { path: 'notas', loadChildren: './pages/notas/notas.module#NotasPageModule' },
   { path: 'notas-detail', loadChildren: './pages/notas/notas-detail/notas-detail.module#NotasDetailPageModule' },
   { path: 'notificaciones', loadChildren: './pages/notificaciones/notificaciones.module#NotificacionesPageModule' },
-  { path: 'testing', loadChildren: './pages/testing/testing.module#TestingPageModule' }
+  { path: 'testing', loadChildren: './pages/testing/testing.module#TestingPageModule' },  { path: 'calendario', loadChildren: './pages/calendario/calendario.module#CalendarioPageModule' }
+
 
 
 ];

@@ -1,0 +1,48 @@
+<app-header [title]="'Calendario'"></app-header>
+
+<ion-content>
+
+
+  <ion-card>
+
+    <form #form="ngForm">
+
+      <ion-item>
+        <ion-label position="floating">Periodo Lectivo</ion-label>
+        <ion-select required placeholder="Seleccione un Periodo Lectivo" name="periodoSelect" [(ngModel)]="periodo.id">
+          <ion-select-option value="{{periodo.id}}" *ngFor="let periodo of periodos">{{periodo.nombre}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-button size="default" expand="block" [disabled]="form.invalid" (click)="verCalendario()">
+        Ver Calendario
+      </ion-button>
+
+    </form>
+
+
+  </ion-card>
+
+
+  <ion-list inset="true" *ngIf="calendario" lines="full">
+
+    <ion-text color="tertiary">
+      <h4>EVENTOS DEL CALENDARIO</h4>
+    </ion-text>
+
+    <ion-item *ngFor="let detalle of calendario.detallecalendarioSet">
+      <ion-label>
+        <h1>{{detalle.evento.titulo}}</h1>
+        <h4>{{detalle.fechaInicio | date}}</h4>
+        <h4>{{detalle.fechaFin | date}}</h4>
+      </ion-label>
+    </ion-item>
+
+
+  </ion-list>
+
+
+
+
+</ion-content>

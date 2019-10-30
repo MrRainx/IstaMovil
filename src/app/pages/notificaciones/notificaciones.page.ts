@@ -6,6 +6,7 @@ import { LoginService } from '../login/services/login.service';
 import { HorarioService } from '../horario/services/horario.service';
 import { NotificacionesService } from './services/notificaciones.service';
 import { Notificacion } from 'src/app/interfaces/Notificacion';
+import { DetalleNotificacion } from '../../interfaces/Notificacion';
 
 @Component({
   selector: 'app-notificaciones',
@@ -30,7 +31,7 @@ export class NotificacionesPage implements OnInit {
     cedulaDocente: ''
   }
 
-  public notificaciones: Notificacion[]
+  public notificaciones: DetalleNotificacion[]
 
   constructor(
     private horarioSrv: HorarioService,
@@ -42,24 +43,26 @@ export class NotificacionesPage implements OnInit {
 
   async ngOnInit() {
     this.user = this.loginSrv.getUserLoggedIn()
+
     this.obj.cedulaDocente = this.user.persona.identificacion;
+
     this.rol = this.loginSrv.getRol()
+
     this.periodos = await this.horarioSrv.getPeriodos(this.obj.cedulaDocente, this.rol);
     this.obj.periodoCurso = this.periodos[0];
+
     await this.loadCursos()
 
-    if (this.rol == 'ALUMNO') {
-      this.notificaciones = await this.srv.getMisNotificaciones({ cedula: this.user.persona.identificacion, rol: this.rol })
 
-      console.log(this.notificaciones);
-    }
 
+    this.notificaciones = await this.srv.getMisNotificaciones({ cedula: this.user.persona.identificacion, rol: this.rol })
 
   }
 
   async chngPeriodo() {
     await this.loadCursos()
   }
+
   private async loadCursos() {
     this.cursos = await this.notasSrv.getCursos(this.obj.cedulaDocente, this.obj.periodoCurso.id, this.rol)
     this.obj.cursoReceptor = this.cursos[0]
@@ -68,8 +71,16 @@ export class NotificacionesPage implements OnInit {
 
   async enviar() {
     await this.srv.enviarNotificacion(this.obj)
+
     this.obj.titulo = ''
     this.obj.mensaje = ''
+
+
+  }
+
+  async eliminar(detalle) {
+    await this.srv.eliminarNotificacion(detalle.notificacion.id)
+    this.notificaciones = await this.srv.getMisNotificaciones({ cedula: this.user.persona.identificacion, rol: this.rol })
   }
 
 }

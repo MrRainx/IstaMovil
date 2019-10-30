@@ -56,32 +56,36 @@
     </form>
   </ion-card>
 
-  <ion-list *ngIf="rol == 'ALUMNO'">
+  <ion-list>
 
-    <ion-list-header>
-      <ion-label>Notificaciones Recibias</ion-label>
-    </ion-list-header>
+    <ion-label>
+      <ion-label *ngIf="rol == 'ALUMNO'">Notificaciones Recibias</ion-label>
+      <ion-label *ngIf="rol != 'ALUMNO'">Notificaciones Enviadas</ion-label>
+    </ion-label>
 
     <ion-card *ngFor="let notificacion of notificaciones">
       <ion-card-header>
-        <ion-label>Emisor: {{notificacion.emisor.primerNombre}} {{notificacion.emisor.primerApellido}}</ion-label>
 
+        <ion-label *ngIf="rol == 'ALUMNO'">Emisor: {{notificacion.emisor.primerNombre}}
+          {{notificacion.emisor.primerApellido}}</ion-label>
       </ion-card-header>
 
 
       <ion-item>
         <ion-text color="primary">
-          <h1>Titulo: {{notificacion.titulo}}</h1>
+          <h1>Titulo: {{notificacion.notificacion.titulo}}</h1>
         </ion-text>
       </ion-item>
 
       <ion-item>
         <ion-text color="primary">
           Mensaje:
-          <p>{{notificacion.mensaje}}</p>
+          <p>{{notificacion.notificacion.mensaje}}</p>
         </ion-text>
       </ion-item>
-
+      <ion-button expand="block" *ngIf="rol != 'ALUMNO'" color="danger" (click)="eliminar(notificacion)">
+        Eliminar
+      </ion-button>
     </ion-card>
   </ion-list>
 

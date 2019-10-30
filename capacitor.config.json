@@ -1,0 +1,8 @@
+{
+  "appId": "com.ista.movil",
+  "appName": "MrIstaMovil",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}

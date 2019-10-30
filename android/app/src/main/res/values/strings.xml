@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">MrIstaMovil</string>
+    <string name="title_activity_main">MrIstaMovil</string>
+    <string name="package_name">com.ista.movil</string>
+    <string name="custom_url_scheme">com.ista.movil</string>
+</resources>
